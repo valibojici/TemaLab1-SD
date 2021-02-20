@@ -100,7 +100,7 @@ bool counting_sort(std::vector<ULL>& nums)
 int main() {
 	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
 
-	// functii in vector https://stackoverflow.com/a/53725982
+	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
 	std::vector<std::function<bool(std::vector<ULL>&) > > sorts;
 
 
