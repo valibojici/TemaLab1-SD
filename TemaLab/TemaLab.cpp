@@ -7,6 +7,8 @@
 #include <fstream>
 #include <functional>
 
+#include "countingsort.h"
+
 typedef unsigned long long ULL;
 
 std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
@@ -73,28 +75,6 @@ void afis(const std::vector<ULL>& nums)
 	std::cout << '\n';
 }
 
-bool counting_sort(std::vector<ULL>& nums)
-{
-	ULL mini = nums[0], maxi = nums[0];
-	for (unsigned int i = 1; i < nums.size(); ++i)
-		mini = std::min(mini, nums[i]), maxi = std::max(maxi, nums[i]);
-
-	// daca sunt prea multe numere depasesc memoria
-	if (maxi - mini + 1 > 1500000000)return false;
-
-
-	std::vector<unsigned int> count(maxi - mini + 1, 0);
-	for (unsigned int i = 0; i < nums.size(); ++i)
-		count[nums[i] - mini]++;
-
-	unsigned int poz = 0;
-	for (unsigned int i = 0; i < maxi - mini + 1; ++i)
-		for (unsigned int j = 0; j < count[i]; ++j)
-			nums[poz++] = i + mini;
-	
-	return true;
-}
-
 
 int main() {
 	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
@@ -120,7 +100,9 @@ int main() {
 			ok = sort(v);
 			auto end = std::chrono::high_resolution_clock::now();
 			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-			std::cout << duration.count() << "us    " << duration.count()/1000.0 << "ms"<< '\n';
+			
+			if (ok) std::cout << duration.count() / 1000.0 << "ms" << '\n';
+			else std::cout << -1 << '\n';
 		}
 	}
 }

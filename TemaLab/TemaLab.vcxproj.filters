@@ -18,10 +18,18 @@
     <ClCompile Include="TemaLab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="countingsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="teste.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="countingsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
