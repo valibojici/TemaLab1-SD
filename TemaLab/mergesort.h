@@ -1,0 +1,6 @@
+#pragma once
+#include <vector>
+typedef unsigned long long ULL;
+
+void mergesort(std::vector<ULL>&, std::vector<ULL>&, size_t, size_t);
+void merge_sort(std::vector<ULL>&, size_t, size_t);
