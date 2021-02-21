@@ -142,6 +142,7 @@
     <ClCompile Include="countingsort.cpp" />
     <ClCompile Include="insertionsort.cpp" />
     <ClCompile Include="quicksort.cpp" />
+    <ClCompile Include="radixsort.cpp" />
     <ClCompile Include="TemaLab.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="countingsort.h" />
     <ClInclude Include="quicksort.h" />
     <ClInclude Include="insertionsort.h" />
+    <ClInclude Include="radixsort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

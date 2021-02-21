@@ -10,6 +10,7 @@
 #include "countingsort.h"
 #include "insertionsort.h"
 #include "quicksort.h"
+#include "radixsort.h"
 
 typedef unsigned long long ULL;
 
@@ -107,14 +108,18 @@ int main() {
 		insertion_sort,
 		quick_sort_median3,
 		quick_sort_middle,
+		radix_sort8,
+		radix_sort128,
 		std_sort
 	};
 
 	std::vector<std::string>sort_name{
 		"Counting Sort",
 		"Insertion Sort",
-		"quick_sort_median3",
-		"quick_sort_middle",
+		"Quick Sort (median 3)",
+		"Quick Sort (middle)",
+		"radix_8",
+		"radix_128",
 		"std::sort"
 	};
 
@@ -136,7 +141,7 @@ int main() {
 			{
 				std::cout << "Numar prea mare de elemente(dureaza prea mult)\n";
 				continue;
-			}
+			} 
 
 			std::vector<ULL> v;
 			double avg = 0;
