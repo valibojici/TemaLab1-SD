@@ -22,15 +22,15 @@ std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
 	fin >> input;
 	fin >> input;
 	fin >> input;
-	unsigned int nr_tests = std::stoul(input);
+	size_t nr_tests = std::stoull(input);
 	fin.get();
 
-	for (unsigned int i = 0; i < nr_tests; ++i)
+	for (size_t i = 0; i < nr_tests; ++i)
 	{
 		fin >> input;
 		fin >> input;
 		fin >> input;
-		unsigned int size = std::stoul(input);
+		size_t size = std::stoull(input);
 		fin.get();
 
 		fin >> input;
@@ -45,7 +45,7 @@ std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
 	return tests;
 }
 
-std::vector<ULL> get_random_nums(unsigned int size, ULL max_val)
+std::vector<ULL> get_random_nums(size_t size, ULL max_val)
 {
 	// generarea numere aleatorii https://stackoverflow.com/a/13445752
 	std::random_device dev;
@@ -55,16 +55,15 @@ std::vector<ULL> get_random_nums(unsigned int size, ULL max_val)
 	std::vector<ULL> nums;
 	nums.reserve(size);
 
-	for (unsigned int i = 0; i < size; ++i)
+	for (size_t i = 0; i < size; ++i)
 		nums.push_back(distribution(rng));
 
 	return nums;
 }
 
-
 bool check_sort(const std::vector<ULL>& nums)
 {
-	for (unsigned int i = 1; i < nums.size(); ++i)
+	for (size_t i = 1; i < nums.size(); ++i)
 		if (nums[i - 1] > nums[i])return false;
 	return true;
 }
@@ -74,6 +73,12 @@ void afis(const std::vector<ULL>& nums)
 	for (const int& x : nums)
 		std::cout << x << ' ';
 	std::cout << '\n';
+}
+
+// functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
+void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
+{
+	std::sort(nums.begin() + start, nums.begin() + end + 1);
 }
 
 
@@ -94,9 +99,6 @@ int main() {
 	//}
 
 #if 1
-
-
-
 	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
 
 	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
@@ -104,29 +106,42 @@ int main() {
 		counting_sort,
 		insertion_sort,
 		quick_sort_median3,
-		quick_sort_middle
+		quick_sort_middle,
+		std_sort
 	};
 
 	std::vector<std::string>sort_name{
 		"Counting Sort",
 		"Insertion Sort",
 		"quick_sort_median3",
-		"quick_sort_middle"
+		"quick_sort_middle",
+		"std::sort"
 	};
+
 
 	for (auto& test : tests)
 	{
 		std::cout << "N = " << test.first << " Max = " << test.second << '\n';
 		std::vector<ULL> nums = get_random_nums(test.first, test.second);
-		//std::sort(nums.begin(),nums.end(),std::greater<int>());
 
-		for (unsigned int i = 0; i < sorts.size(); ++i)
+		for (size_t i = 0; i < sorts.size(); ++i)
 		{
-			if (i == 1 && test.first >= 100000)continue;
-			std::vector<ULL> v;
+			std::cout << sort_name[i] << " : ";
+			if (i == 0 && !check_memory(nums))
+			{
+				std::cout << "Memorie insuficienta\n";
+				continue;
+			}
+			if (i == 1)
+			{
+				std::cout << "Numar prea mare de elemente(dureaza prea mult)\n";
+				continue;
+			}
 
-			// 10 iteratii pt fiecare sort si medie aritmetica
+			std::vector<ULL> v;
 			double avg = 0;
+			
+			// 10 iteratii pt fiecare sort si medie aritmetica
 			for (int k = 0; k < 10; ++k)
 			{
 				v = nums;
@@ -139,40 +154,8 @@ int main() {
 
 				avg += duration.count() / 1000.0;
 			}
-			avg = avg / 10;
-			
-			std::cout << sort_name[i] << " : ";
-
-			if (check_sort(v))
-				std::cout << "OK " << avg << "ms" << '\n';
-			else
-			{
-				if (i == 0 && !check_memory(v))
-				{
-					std::cout << "Memorie insuficienta\n";
-					continue;
-				}
-				std::cout << "NOT OK\n";
-			}
+			std::cout << (check_sort(v) ? "OK " : "NOT OK ") << avg / 10 << "ms" << '\n';
 		}
-
-		double avg = 0;
-		std::vector<ULL> v;
-		for (int k = 0; k < 10; ++k)
-		{
-			v = nums;
-
-			// pentru masurat timp executie functie https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
-			auto start = std::chrono::high_resolution_clock::now();
-			std::sort(v.begin(), v.end());
-			auto end = std::chrono::high_resolution_clock::now();
-			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-
-			avg += duration.count() / 1000.0;
-		}
-		avg = avg / 10;
-		std::cout << "std::sort() : " << avg << "ms\n";
-
 		std::cout << "\n\n";
 	}
 #endif

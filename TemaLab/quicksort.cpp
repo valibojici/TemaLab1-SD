@@ -6,9 +6,9 @@
 typedef unsigned long long ULL;
 
 
-inline int partition_median3(std::vector<ULL>& nums, int start, int end)
+inline size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
 {
-	int mid = start + (end - start) / 2;
+	size_t mid = start + (end - start) / 2;
 
 	if (nums[start] > nums[mid])
 		std::swap(nums[start], nums[mid]);
@@ -31,9 +31,9 @@ inline int partition_median3(std::vector<ULL>& nums, int start, int end)
 	}
 }
 
-inline int partition_middle(std::vector<ULL>& nums, int start, int end)
+inline size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
-	int mid = start + (end - start) / 2;
+	size_t mid = start + (end - start) / 2;
 
 	ULL pivot = nums[mid];
 
@@ -49,7 +49,7 @@ inline int partition_middle(std::vector<ULL>& nums, int start, int end)
 	}
 }
 
-void quick_sort_median3(std::vector<ULL>&nums, int start, int end)
+void quick_sort_median3(std::vector<ULL>&nums, size_t start, size_t end)
 { 
 	if(start < end){
 		int p = partition_median3(nums, start, end);
@@ -68,7 +68,7 @@ void quick_sort_median3(std::vector<ULL>&nums, int start, int end)
 	}
 }
 
-void quick_sort_middle(std::vector<ULL>& nums, int start, int end)
+void quick_sort_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	if (start < end) {
 		int p = partition_middle(nums, start, end);
@@ -84,7 +84,6 @@ void quick_sort_middle(std::vector<ULL>& nums, int start, int end)
 			quick_sort_middle(nums, p + 1, end);
 			quick_sort_middle(nums, start, p);
 		}
-		
 	}
 }
  
