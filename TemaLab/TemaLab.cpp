@@ -79,10 +79,19 @@ void afis(const std::vector<ULL>& nums)
 
 int main() {
 
-	/*std::vector<ULL> nums = { 1,7,6,3,1,1,6,2,1,7,6,3,1,1,6,2 };
-	std::cout << BFPRT(nums) << '\n';
-	std::sort(nums.begin(),nums.end());
-	afis(nums);*/
+	//std::vector<ULL> v = get_random_nums(100000000, 100000);
+	//quick_sort_first(v, 0, v.size() - 1);
+
+	//for (int i = 0; i < 10000; ++i)
+	//{
+	//	std::vector<ULL> v = get_random_nums(10000000, 50);
+	//	std::sort(v.begin(), v.end());
+	//	//afis(v);
+	//	
+	//	quick_sort_first(v,0,v.size()-1);
+	//	if (check_sort(v))std::cout << "OK\n";
+	//	else std::cout << "NU E eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeOK\n";
+	//}
 
 #if 1
 
@@ -95,20 +104,21 @@ int main() {
 		counting_sort,
 		insertion_sort,
 		quick_sort_median3,
-		quick_sort_random
+		quick_sort_middle
 	};
 
 	std::vector<std::string>sort_name{
 		"Counting Sort",
 		"Insertion Sort",
 		"quick_sort_median3",
-		"quick_sort_random"
+		"quick_sort_middle"
 	};
 
 	for (auto& test : tests)
 	{
 		std::cout << "N = " << test.first << " Max = " << test.second << '\n';
 		std::vector<ULL> nums = get_random_nums(test.first, test.second);
+		//std::sort(nums.begin(),nums.end(),std::greater<int>());
 
 		for (unsigned int i = 0; i < sorts.size(); ++i)
 		{
