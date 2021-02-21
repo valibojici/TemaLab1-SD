@@ -30,6 +30,12 @@
     <ClCompile Include="radixsort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="introsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mergesort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="teste.txt">
@@ -47,6 +53,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="radixsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="introsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mergesort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

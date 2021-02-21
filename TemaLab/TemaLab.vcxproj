@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="countingsort.cpp" />
     <ClCompile Include="insertionsort.cpp" />
+    <ClCompile Include="introsort.cpp" />
+    <ClCompile Include="mergesort.cpp" />
     <ClCompile Include="quicksort.cpp" />
     <ClCompile Include="radixsort.cpp" />
     <ClCompile Include="TemaLab.cpp" />
@@ -150,6 +152,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="countingsort.h" />
+    <ClInclude Include="introsort.h" />
+    <ClInclude Include="mergesort.h" />
     <ClInclude Include="quicksort.h" />
     <ClInclude Include="insertionsort.h" />
     <ClInclude Include="radixsort.h" />
