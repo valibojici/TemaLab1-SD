@@ -103,24 +103,6 @@ void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
 
 int main() {
 
-	//std::vector<ULL> v = get_random_nums(1000000, 20);
-	////std::vector<ULL> v = { 6, 6, 1 ,11, 1, 0, 11, 2 ,17 ,12 };
-	////afis(v);
-	//heap_sort(v, 0, v.size() - 1);
-	////afis(v);
-	//std::cout << check_sort(v);
-	////for (int i = 0; i < 10000; ++i)
-	////{
-	////	std::vector<ULL> v = get_random_nums(10000000, 50);
-	////	std::sort(v.begin(), v.end());
-	////	//afis(v);
-	////	
-	////	quick_sort_first(v,0,v.size()-1);
-	////	if (check_sort(v))std::cout << "OK\n";
-	////	else std::cout << "NU E eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeOK\n";
-	////}
-
-#if 1
 	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
 
 	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
@@ -163,17 +145,18 @@ int main() {
 		for (std::string subcase : subcases)
 		{
 			std::cout << subcase << "\n\n";
+			
 			std::vector<ULL> nums = get_random_nums(test.first, test.second, subcase);
 
 			for (size_t i = 0; i < sorts.size(); ++i)
 			{
 				std::cout << sort_name[i] << " : ";
-				if (i == 0 && !check_memory(nums))
+				if (i == 0 && !check_memory(nums)) // counting sort
 				{
 					std::cout << "Memorie insuficienta\n";
 					continue;
 				}
-				if (i == 1 && test.second >= 10000)
+				if (i == 1 && test.second >= 10000) // insertion sort
 				{
 					std::cout << "Numar prea mare de elemente(dureaza prea mult)\n";
 					continue;
@@ -201,5 +184,4 @@ int main() {
 		}
 		
 	}
-#endif
 }
