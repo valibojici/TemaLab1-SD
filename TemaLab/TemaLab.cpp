@@ -48,22 +48,6 @@ std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
 	return tests;
 }
 
-void median_of3killer(std::vector<ULL>& nums,size_t start, size_t end)
-{
-	if (start < end)
-	{
-		size_t mid = start + (end - start) / 2;
-		size_t poz_max = start;
-		for (size_t i = start + 1; i <= end; ++i)
-			if (nums[i] > nums[poz_max])poz_max = i;
-		std::swap(nums[mid], nums[poz_max]);
-		if(mid)
-			median_of3killer(nums, start, mid - 1);
-		median_of3killer(nums, mid+1, end);
-	}
-}
-
-
 std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 {
 	// generarea numere aleatorii https://stackoverflow.com/a/13445752
@@ -88,13 +72,8 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 			nums.push_back(distribution(rng));
 	}
 	
-	if (option == "Sorted" || option == "Mountain")
-	{
+	if (option == "Sorted")
 		std::sort(nums.begin(), nums.end());
-		if (option == "Mountain") {
-			median_of3killer(nums, 0, nums.size() - 1);
-		}
-	}
 	else if(option == "Sorted (reverse)")
 		std::sort(nums.begin(), nums.end(),std::greater<int>());
 
@@ -123,7 +102,7 @@ void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
 
 
 int main() {
-	
+	 
 	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
 
 	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
@@ -133,8 +112,8 @@ int main() {
 		quick_sort_median3,
 		quick_sort_middle,
 		merge_sort,
-		radix_sort256,
-		radix_sort65536,
+		radix_sort8,
+		radix_sort128,
 		introsort,
 		std_sort
 	};
@@ -145,18 +124,17 @@ int main() {
 		"Quick Sort (median 3)",
 		"Quick Sort (middle)",
 		"Merge Sort",
-		"Radix_256",
-		"Radix_65536",
+		"Radix_8",
+		"Radix_128",
 		"Introsort",
 		"std::sort"
 	};
 	
 	std::vector<std::string> subcases{
 		"Mixed",
-		//"Sorted",
-		//"Sorted (reverse)",
-		//"Few distinct values",
-		"Mountain"
+		"Sorted",
+		"Sorted (reverse)",
+		"Few distinct values"
 	};
 
 

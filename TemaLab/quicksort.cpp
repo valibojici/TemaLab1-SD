@@ -16,19 +16,18 @@ inline size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end
 		std::swap(nums[start], nums[end]);
 	if (nums[mid] > nums[end])
 		std::swap(nums[mid], nums[end]);
-	
+
 	ULL pivot = nums[mid];
-	
 	 
 	while (1) {
-		while (nums[start] < pivot)++start;
-		while (nums[end] > pivot)--end;
+		while (nums[start] < pivot)start++;
+		while (nums[end] > pivot)end--;
 		if (start >= end)
 			return end;
 
 		std::swap(nums[start], nums[end]);
-		++start;
-		--end;
+		start++;
+		end--;
 	}
 }
 
@@ -53,7 +52,7 @@ inline size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
 void quick_sort_median3(std::vector<ULL>&nums, size_t start, size_t end)
 { 
 	if(start < end){
-		size_t p = partition_median3(nums, start, end);
+		int p = partition_median3(nums, start, end);
 
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if (p - start + 1 < end - p)
@@ -72,7 +71,7 @@ void quick_sort_median3(std::vector<ULL>&nums, size_t start, size_t end)
 void quick_sort_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	if (start < end) {
-		size_t p = partition_middle(nums, start, end);
+		int p = partition_middle(nums, start, end);
 
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if(p - start + 1 < end - p)
