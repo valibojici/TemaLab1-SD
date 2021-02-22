@@ -4,6 +4,23 @@ void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_
 {
 	if (start < end)
 	{
+		if (end - start + 1 <= 16)
+		{
+			// insertion sort
+			for (size_t i = start + 1; i <= end; ++i)
+			{
+				ULL x = nums[i];
+				size_t j = i;
+				while (j > start && nums[j - 1] > x)
+				{
+					nums[j] = nums[j - 1];
+					j--;
+				}
+				nums[j] = x;
+			}
+			return;
+		}
+
 		size_t mid = start + (end - start) / 2;
 		mergesort(nums, aux, start, mid);
 		mergesort(nums, aux, mid + 1, end);

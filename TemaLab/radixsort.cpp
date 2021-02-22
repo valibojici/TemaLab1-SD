@@ -33,12 +33,12 @@ void radix_sort(std::vector<ULL>& nums, size_t start, size_t end, unsigned expon
 	}
 }
 
-void radix_sort8(std::vector<ULL>& nums, size_t start, size_t end)
+void radix_sort256(std::vector<ULL>& nums, size_t start, size_t end)
 {
-	radix_sort(nums, start, end, 3);
+	radix_sort(nums, start, end, 8);
 }
 
-void radix_sort128(std::vector<ULL>& nums, size_t start, size_t end)
+void radix_sort65536(std::vector<ULL>& nums, size_t start, size_t end)
 {
-	radix_sort(nums, start, end, 7);
+	radix_sort(nums, start, end, 16);
 }
