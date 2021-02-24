@@ -1,10 +1,10 @@
 #include "mergesort.h";
 
-void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_t end)
+void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_t end, bool optimize = false)
 {
 	if (start < end)
 	{
-		if (end - start + 1 <= 16)
+		if (optimize && end - start + 1 <= 20)
 		{
 			// insertion sort
 			for (size_t i = start + 1; i <= end; ++i)
@@ -22,8 +22,8 @@ void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_
 		}
 
 		size_t mid = start + (end - start) / 2;
-		mergesort(nums, aux, start, mid);
-		mergesort(nums, aux, mid + 1, end);
+		mergesort(nums, aux, start, mid, optimize);
+		mergesort(nums, aux, mid + 1, end, optimize);
 
 		size_t i = start, j = mid + 1,k=0;
 		while (i <= mid && j <= end)
@@ -42,5 +42,11 @@ void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_
 void merge_sort(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	std::vector<ULL> aux(end - start + 1, 0);
-	mergesort(nums, aux, start, end);
+	mergesort(nums, aux, start, end, false);
+}
+
+void merge_sort_optimized(std::vector<ULL>& nums, size_t start, size_t end)
+{
+	std::vector<ULL> aux(end - start + 1, 0);
+	mergesort(nums, aux, start, end, true);
 }
