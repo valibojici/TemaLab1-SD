@@ -148,6 +148,7 @@
     <ClCompile Include="TemaLab.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="output.txt" />
     <Text Include="teste.txt" />
   </ItemGroup>
   <ItemGroup>

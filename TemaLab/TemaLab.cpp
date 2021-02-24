@@ -5,7 +5,9 @@
 #include <chrono>
 #include <random>
 #include <fstream>
+#include <set>
 #include <functional>
+#include <iomanip>
 
 #include "countingsort.h"
 #include "insertionsort.h"
@@ -48,22 +50,6 @@ std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
 	return tests;
 }
 
-void median_of3killer(std::vector<ULL>& nums,size_t start, size_t end)
-{
-	if (start < end)
-	{
-		size_t mid = start + (end - start) / 2;
-		size_t poz_max = start;
-		for (size_t i = start + 1; i <= end; ++i)
-			if (nums[i] > nums[poz_max])poz_max = i;
-		std::swap(nums[mid], nums[poz_max]);
-		if(mid)
-			median_of3killer(nums, start, mid - 1);
-		median_of3killer(nums, mid+1, end);
-	}
-}
-
-
 std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 {
 	// generarea numere aleatorii https://stackoverflow.com/a/13445752
@@ -73,14 +59,13 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 
 	std::vector<ULL> nums;
 	nums.reserve(size);
-
-	if (option == "Few distinct values" && size > 10)
+	if (option == "Few distinct values")
 	{
-		for (size_t i = 0; i < 10; ++i)
+		for (size_t i = 0; i < size/8; ++i)
 			nums.push_back(distribution(rng));
 
 		std::uniform_int_distribution<ULL> dist(0, 9);
-		for(size_t i = 10;i<size;++i)
+		for(size_t i = size / 8;i<size;++i)
 			nums.push_back(dist(rng));
 	}
 	else{
@@ -88,13 +73,9 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 			nums.push_back(distribution(rng));
 	}
 	
-	if (option == "Sorted" || option == "Mountain")
-	{
+	if (option == "Sorted")
 		std::sort(nums.begin(), nums.end());
-		if (option == "Mountain") {
-			median_of3killer(nums, 0, nums.size() - 1);
-		}
-	}
+	
 	else if(option == "Sorted (reverse)")
 		std::sort(nums.begin(), nums.end(),std::greater<int>());
 
@@ -110,10 +91,11 @@ bool check_sort(const std::vector<ULL>& nums)
 
 void afis(const std::vector<ULL>& nums)
 {
-	for (const int& x : nums)
-		std::cout << x << ' ';
+	for (size_t i=0;i<nums.size();++i)
+		std::cout << nums[i] << ' ';
 	std::cout << '\n';
 }
+
 
 // functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
 void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
@@ -123,9 +105,10 @@ void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
 
 
 int main() {
-	
-	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
+	std::ofstream output("output.txt");
 
+	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
+	 
 	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
 	std::vector<std::function<void(std::vector<ULL>&, size_t, size_t) > > sorts = {
 		counting_sort,
@@ -133,8 +116,10 @@ int main() {
 		quick_sort_median3,
 		quick_sort_middle,
 		merge_sort,
+		merge_sort_optimized,
+		radix_sort16,
 		radix_sort256,
-		radix_sort65536,
+		radix_sort2048,
 		introsort,
 		std_sort
 	};
@@ -145,42 +130,117 @@ int main() {
 		"Quick Sort (median 3)",
 		"Quick Sort (middle)",
 		"Merge Sort",
+		"Merge Sort(optimized)",
+		"Radix_16",
 		"Radix_256",
-		"Radix_65536",
+		"Radix_2048",
 		"Introsort",
 		"std::sort"
 	};
 	
 	std::vector<std::string> subcases{
 		"Mixed",
-		//"Sorted",
-		//"Sorted (reverse)",
-		//"Few distinct values",
-		"Mountain"
+		"Sorted",
+		"Sorted (reverse)",
+		"Duplicate values",
 	};
 
 
 	for (auto& test : tests)
 	{
+		std::cout << "\nN = " << test.first << " Max = " << test.second << "\n\n";
+		output << "\nN = " << test.first << " Max = " << test.second << "\n\n";
+
+		// nume coloane
+		std::cout << "                       ";
+		output << "                       ";
+		for(auto &subcase : subcases)
+		{
+			std::cout << std::left << std::setw(16) << subcase << "|";
+			output << std::left << std::setw(16) << subcase << "|";
+		}
+		output << '\n';
+		std::cout << '\n';
+
+		for (size_t i = 0; i < sorts.size(); ++i)
+		{
+			// nume sortare
+			std::cout << sort_name[i] << std::right << std::setw(23 - sort_name[i].length()) << ": ";
+			output << sort_name[i] << std::right << std::setw(23 - sort_name[i].length()) << ": ";
+
+			for (auto& subcase : subcases)
+			{
+				std::vector<ULL> nums = get_random_nums(test.first, test.second, subcase);
+
+				if (sort_name[i] == "Counting Sort" && !check_memory(nums)) // counting sort
+				{
+					std::cout << std::left << std::setw(16) << "Memorie insuf." << "|";
+					output << std::left << std::setw(16) << "Memorie insuf." << "|";
+					continue;
+				}
+				if (sort_name[i] == "Insertion Sort" && test.first >= 150000) // insertion sort
+				{
+					std::cout << std::left << std::setw(16) << "Foarte incet" << "|";
+					output << std::left << std::setw(16) << "Foarte incet" << "|";
+					continue;
+				}
+
+				std::vector<ULL> v;
+				double avg = 0;
+				// 10 iteratii pt fiecare sort si medie aritmetica
+				for (int k = 0; k < 10; ++k)
+				{
+					v = nums;
+
+					// pentru masurat timp executie functie https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
+
+					auto start = std::chrono::high_resolution_clock::now();
+					sorts[i](v, 0, v.size() - 1);
+					auto end = std::chrono::high_resolution_clock::now();
+					auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+
+					avg += duration.count() / 1000.0;
+				}
+				std::cout << (check_sort(v) ? "OK " : "NOT OK ") << std::left <<  std::setw(11) << round(avg / 10 * 100) / 100 << "ms|";
+				output << (check_sort(v) ? "OK " : "NOT OK ") << std::left <<  std::setw(11) << round(avg / 10 * 100) / 100 << "ms|";
+			}
+			std::cout << '\n';
+			output << '\n';
+		}
+	}
+
+	return 0;
+
+
+
+	for (auto& test : tests)
+	{
 		std::cout << "N = " << test.first << " Max = " << test.second << '\n';
+		output << "N = " << test.first << " Max = " << test.second << '\n';
+
 		
 		for (std::string subcase : subcases)
 		{
-			std::cout << subcase << "\n\n";
+			std::cout << "\n" << subcase << "\n-------------\n";
+			output << "\n" << subcase << "\n-------------\n";
 			
 			std::vector<ULL> nums = get_random_nums(test.first, test.second, subcase);
 
 			for (size_t i = 0; i < sorts.size(); ++i)
 			{
-				std::cout << sort_name[i] << " : ";
+				std::cout << sort_name[i] << std::setw(25 - sort_name[i].length()) << ": ";
+				output << sort_name[i] << std::setw(25 - sort_name[i].length()) << ": ";
+
 				if (i == 0 && !check_memory(nums)) // counting sort
 				{
-					std::cout << "Memorie insuficienta\n";
+					std::cout << "Mem. Insf.\n";
+					output << "Mem. Insf.\n";
 					continue;
 				}
-				if (i == 1 && test.second >= 10000) // insertion sort
+				if (i == 1 && test.first >=100000) // insertion sort
 				{
-					std::cout << "Numar prea mare de elemente(dureaza prea mult)\n";
+					std::cout << "Foarte incet\n";
+					output << "Foarte incet\n";
 					continue;
 				}
 
@@ -201,9 +261,10 @@ int main() {
 					avg += duration.count() / 1000.0;
 				}
 				std::cout << (check_sort(v) ? "OK " : "NOT OK ") << avg / 10 << "ms" << '\n';
+				output << (check_sort(v) ? "OK " : "NOT OK ") << avg / 10 << "ms" << '\n';
 			}
-			std::cout << "\n\n";
 		}
-		
+		std::cout << "\n###########################################################################\n";
+		output << "\n###########################################################################\n";
 	}
 }

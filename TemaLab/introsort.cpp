@@ -13,7 +13,7 @@ void heap_sort(std::vector<ULL>& nums, size_t start, size_t end)
 	}
 }
 
-inline void heap_down(std::vector<ULL>& nums, size_t index, size_t start, size_t end)
+void heap_down(std::vector<ULL>& nums, size_t index, size_t start, size_t end)
 {
 	if (start + index * 2 + 1 > end)return;
 	
@@ -55,7 +55,7 @@ void introsort_range(std::vector<ULL>& nums, size_t start, size_t end, int depth
 			return;
 		}
 
-		size_t p = partition_middle(nums, start, end);
+		size_t p = partition_median3(nums, start, end);
 	
 		if(p - start +  1 < end - p)
 		{

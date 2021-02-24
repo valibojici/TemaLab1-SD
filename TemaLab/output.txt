@@ -1,0 +1,14 @@
+
+N = 120000 Max = 10000000
+
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 21.32      ms|OK 18.72      ms|OK 18.64      ms|OK 19.73      ms|
+Insertion Sort       : OK 2102.03    ms|OK 0.13       ms|OK 4252.34    ms|OK 2113.56    ms|
+Quick Sort (median 3): OK 9.66       ms|OK 1.65       ms|OK 1.67       ms|OK 9.89       ms|
+Quick Sort (middle)  : OK 9.12       ms|OK 1.31       ms|OK 1.57       ms|OK 9.57       ms|
+Merge Sort           : OK 11.86      ms|OK 3.22       ms|OK 3.49       ms|OK 11.34      ms|
+Radix_16             : OK 4.46       ms|OK 4.37       ms|OK 4.31       ms|OK 4.33       ms|
+Radix_256            : OK 4.68       ms|OK 4.63       ms|OK 4.6        ms|OK 4.68       ms|
+Radix_2048           : OK 8.26       ms|OK 8.74       ms|OK 8.43       ms|OK 8.56       ms|
+Introsort            : OK 7.88       ms|OK 0.8        ms|OK 0.88       ms|OK 7.84       ms|
+std::sort            : OK 8.85       ms|OK 1.21       ms|OK 1.55       ms|OK 8.8        ms|

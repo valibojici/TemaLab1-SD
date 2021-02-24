@@ -6,10 +6,9 @@
 typedef unsigned long long ULL;
 
 
-inline size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
+size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	size_t mid = start + (end - start) / 2;
-
 	if (nums[start] > nums[mid])
 		std::swap(nums[start], nums[mid]);
 	if (nums[start] > nums[end])
@@ -19,7 +18,6 @@ inline size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end
 	
 	ULL pivot = nums[mid];
 	
-	 
 	while (1) {
 		while (nums[start] < pivot)++start;
 		while (nums[end] > pivot)--end;
@@ -32,11 +30,13 @@ inline size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end
 	}
 }
 
-inline size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
+size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	size_t mid = start + (end - start) / 2;
-
+	 
 	ULL pivot = nums[mid];
+	size_t lo = start, hi = end;
+
 
 	while (1) {
 		while (nums[start] < pivot)start++;
@@ -73,7 +73,6 @@ void quick_sort_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	if (start < end) {
 		size_t p = partition_middle(nums, start, end);
-
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if(p - start + 1 < end - p)
 		{
