@@ -4,7 +4,7 @@ void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, size_t start, size_
 {
 	if (start < end)
 	{
-		if (optimize && end - start + 1 <= 20)
+		if (optimize && end - start + 1 <= 24)
 		{
 			// insertion sort
 			for (size_t i = start + 1; i <= end; ++i)
