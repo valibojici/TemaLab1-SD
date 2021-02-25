@@ -8,6 +8,7 @@
 #include <set>
 #include <functional>
 #include <iomanip>
+#include <unordered_map>
 
 #include "countingsort.h"
 #include "insertionsort.h"
@@ -18,11 +19,56 @@
 
 typedef unsigned long long ULL;
 
-std::vector<std::pair<unsigned int, ULL> > get_tests(const char* file)
+// functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
+void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
+{
+	std::sort(nums.begin() + start, nums.begin() + end + 1);
+}
+
+struct Result {
+	size_t size;
+	ULL max_val;
+	std::unordered_map < std::string, std::vector< std::pair<std::string, float> > >  subcase_info; // sort_name : vector<subcase_name, time>
+
+	Result(size_t size, ULL max_val) : size(size), max_val(max_val) {}
+};
+
+std::vector<std::string>sort_names{
+		"Counting Sort",
+		"Insertion Sort",
+		"Quick Sort (median 3)",
+		"Quick Sort (middle)",
+		"Merge Sort",
+		"Merge Sort(optimized)",
+		"Radix_16",
+		"Radix_256",
+		"Radix_2048",
+		"Introsort",
+		"std::sort"
+};
+
+// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
+std::vector<std::function<void(std::vector<ULL>&, size_t, size_t) > > sorts = {
+		counting_sort,
+		insertion_sort,
+		quick_sort_median3,
+		quick_sort_middle,
+		merge_sort,
+		merge_sort_optimized,
+		radix_sort16,
+		radix_sort256,
+		radix_sort2048,
+		introsort,
+		std_sort
+};
+
+std::vector<std::string> subcases{ "Mixed", "Sorted", "Sorted (reverse)", "Duplicate values"};
+
+std::vector<std::pair<size_t, ULL> > get_tests(const char* file)
 {
 	std::string input;
 	std::ifstream fin(file);
-	std::vector< std::pair<unsigned int, ULL> >tests;
+	std::vector< std::pair<size_t, ULL> >tests;
 
 	fin >> input;
 	fin >> input;
@@ -59,14 +105,14 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val,std::string option)
 
 	std::vector<ULL> nums;
 	nums.reserve(size);
-	if (option == "Few distinct values")
+	if (option == "Duplicate values")
 	{
-		for (size_t i = 0; i < size/8; ++i)
+		for (size_t i = 0; i < 8; ++i)
 			nums.push_back(distribution(rng));
 
-		std::uniform_int_distribution<ULL> dist(0, 9);
-		for(size_t i = size / 8;i<size;++i)
-			nums.push_back(dist(rng));
+		std::uniform_int_distribution<ULL> dist(0, 7);
+		for(size_t i = 8 ;i<size;++i)
+			nums.push_back(nums[dist(rng)]);
 	}
 	else{
 		for (size_t i = 0; i < size; ++i)
@@ -96,161 +142,92 @@ void afis(const std::vector<ULL>& nums)
 	std::cout << '\n';
 }
 
-
-// functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
-void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
+void print_result(Result& result, std::ostream& out)
 {
-	std::sort(nums.begin() + start, nums.begin() + end + 1);
+	out << "\nN = " << result.size << " Max = " << result.max_val << '\n';
+	out << "                       "; // spatiu inainte de nume prima coloana
+
+	for (auto& subcase_info : result.subcase_info.begin()->second) // fiecare nume de coloana
+		out << std::left << std::setw(16) << subcase_info.first << "|";
+	out << "\n";
+	
+	for (auto& sort_name : sort_names)
+	{
+		// afis nume sort
+		out << sort_name << std::right << std::setw(23 - sort_name.length()) << ": ";
+
+		for (auto& info : result.subcase_info[sort_name]) // pereche (subcase - time)
+		{
+			if (info.second >= 0) // daca a fost ok sortarea
+				out << "OK " << std::left << std::setw(11) << info.second << "ms|";
+			else
+			{
+				std::string mesaj = "NOT OK"; // nu este sortat corect
+
+				if (info.second == -1) // depasit timp la insertion sort
+					mesaj = "Foarte incet";
+				else if (info.second == -2) // depasit memorie la counting sort
+					mesaj = "Memorie insuf.";
+
+				out << std::left << std::setw(16) << mesaj << "|";
+			}
+		}
+		out << '\n'; // gata linia curenta
+	}
+	out << "\n"; // gata tabelul
+}
+
+void print_result_csv(Result& result, const char* file_name)
+{
+	std::ofstream out(file_name);
+
+	out << "Name";
+	for (auto& subcase_info : result.subcase_info.begin()->second)
+		out << "," << subcase_info.first;
+	out << '\n';
+	for (auto& info : result.subcase_info)
+	{
+		out << info.first;
+		for (auto& subcase_info : info.second)
+			out << "," << subcase_info.second;
+		out << '\n';
+	}
+
 }
 
 
 int main() {
 	std::ofstream output("output.txt");
 
-	std::vector<std::pair<unsigned int, ULL> > tests = get_tests("teste.txt");
-	 
-	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
-	std::vector<std::function<void(std::vector<ULL>&, size_t, size_t) > > sorts = {
-		counting_sort,
-		insertion_sort,
-		quick_sort_median3,
-		quick_sort_middle,
-		merge_sort,
-		merge_sort_optimized,
-		radix_sort16,
-		radix_sort256,
-		radix_sort2048,
-		introsort,
-		std_sort
-	};
-
-	std::vector<std::string>sort_name{
-		"Counting Sort",
-		"Insertion Sort",
-		"Quick Sort (median 3)",
-		"Quick Sort (middle)",
-		"Merge Sort",
-		"Merge Sort(optimized)",
-		"Radix_16",
-		"Radix_256",
-		"Radix_2048",
-		"Introsort",
-		"std::sort"
-	};
+	std::vector<std::pair<size_t, ULL> > tests = get_tests("teste.txt");
 	
-	std::vector<std::string> subcases{
-		"Mixed",
-		"Sorted",
-		"Sorted (reverse)",
-		"Duplicate values",
-	};
-
-
 	for (auto& test : tests)
 	{
-		std::cout << "\nN = " << test.first << " Max = " << test.second << "\n\n";
-		output << "\nN = " << test.first << " Max = " << test.second << "\n\n";
+		Result result(test.first, test.second);
 
-		// nume coloane
-		std::cout << "                       ";
-		output << "                       ";
-		for(auto &subcase : subcases)
+		for (auto& subcase : subcases)
 		{
-			std::cout << std::left << std::setw(16) << subcase << "|";
-			output << std::left << std::setw(16) << subcase << "|";
-		}
-		output << '\n';
-		std::cout << '\n';
-
-		for (size_t i = 0; i < sorts.size(); ++i)
-		{
-			// nume sortare
-			std::cout << sort_name[i] << std::right << std::setw(23 - sort_name[i].length()) << ": ";
-			output << sort_name[i] << std::right << std::setw(23 - sort_name[i].length()) << ": ";
-
-			for (auto& subcase : subcases)
-			{
-				std::vector<ULL> nums = get_random_nums(test.first, test.second, subcase);
-
-				if (sort_name[i] == "Counting Sort" && !check_memory(nums)) // counting sort
-				{
-					std::cout << std::left << std::setw(16) << "Memorie insuf." << "|";
-					output << std::left << std::setw(16) << "Memorie insuf." << "|";
-					continue;
-				}
-				if (sort_name[i] == "Insertion Sort" && test.first >= 150000) // insertion sort
-				{
-					std::cout << std::left << std::setw(16) << "Foarte incet" << "|";
-					output << std::left << std::setw(16) << "Foarte incet" << "|";
-					continue;
-				}
-
-				std::vector<ULL> v;
-				double avg = 0;
-				// 10 iteratii pt fiecare sort si medie aritmetica
-				for (int k = 0; k < 10; ++k)
-				{
-					v = nums;
-
-					// pentru masurat timp executie functie https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
-
-					auto start = std::chrono::high_resolution_clock::now();
-					sorts[i](v, 0, v.size() - 1);
-					auto end = std::chrono::high_resolution_clock::now();
-					auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-
-					avg += duration.count() / 1000.0;
-				}
-				std::cout << (check_sort(v) ? "OK " : "NOT OK ") << std::left <<  std::setw(11) << round(avg / 10 * 100) / 100 << "ms|";
-				output << (check_sort(v) ? "OK " : "NOT OK ") << std::left <<  std::setw(11) << round(avg / 10 * 100) / 100 << "ms|";
-			}
-			std::cout << '\n';
-			output << '\n';
-		}
-	}
-
-	return 0;
-
-
-
-	for (auto& test : tests)
-	{
-		std::cout << "N = " << test.first << " Max = " << test.second << '\n';
-		output << "N = " << test.first << " Max = " << test.second << '\n';
-
-		
-		for (std::string subcase : subcases)
-		{
-			std::cout << "\n" << subcase << "\n-------------\n";
-			output << "\n" << subcase << "\n-------------\n";
-			
-			std::vector<ULL> nums = get_random_nums(test.first, test.second, subcase);
-
+			std::vector<ULL> initial_nums = get_random_nums(test.first, test.second, subcase);
 			for (size_t i = 0; i < sorts.size(); ++i)
-			{
-				std::cout << sort_name[i] << std::setw(25 - sort_name[i].length()) << ": ";
-				output << sort_name[i] << std::setw(25 - sort_name[i].length()) << ": ";
+			{		
+				std::cout << "Se calculeaza timpul pentru " << sort_names[i] << " cazul " << subcase << " " << test.first << " " << test.second << '\n';
 
-				if (i == 0 && !check_memory(nums)) // counting sort
+				if (sort_names[i] == "Insertion Sort" && subcase != "Sorted" && test.first >= 10000)
 				{
-					std::cout << "Mem. Insf.\n";
-					output << "Mem. Insf.\n";
+					result.subcase_info[sort_names[i]].push_back({ subcase,-1 });
 					continue;
 				}
-				if (i == 1 && test.first >=100000) // insertion sort
+				else if (sort_names[i] == "Counting Sort" && !check_memory(initial_nums))
 				{
-					std::cout << "Foarte incet\n";
-					output << "Foarte incet\n";
+					result.subcase_info[sort_names[i]].push_back({ subcase,-2 });
 					continue;
 				}
-
 				std::vector<ULL> v;
-				double avg = 0;
-
+				float avg = 0;
 				// 10 iteratii pt fiecare sort si medie aritmetica
 				for (int k = 0; k < 10; ++k)
 				{
-					v = nums;
+					v = initial_nums;
 
 					// pentru masurat timp executie functie https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
 					auto start = std::chrono::high_resolution_clock::now();
@@ -260,11 +237,17 @@ int main() {
 
 					avg += duration.count() / 1000.0;
 				}
-				std::cout << (check_sort(v) ? "OK " : "NOT OK ") << avg / 10 << "ms" << '\n';
-				output << (check_sort(v) ? "OK " : "NOT OK ") << avg / 10 << "ms" << '\n';
+				avg /= 10;
+				avg = round(avg * 100) / 100;
+				if (check_sort(v))
+					result.subcase_info[sort_names[i]].push_back({ subcase,avg });
+				else
+					result.subcase_info[sort_names[i]].push_back({ subcase,-3 });
 			}
 		}
-		std::cout << "\n###########################################################################\n";
-		output << "\n###########################################################################\n";
+		print_result(result, std::cout);
+		print_result_csv(result, "out.csv");
+		//print_result(result, output);
 	}
+	return 0;
 }
