@@ -33,7 +33,7 @@ void introsort_range(std::vector<ULL>& nums, size_t start, size_t end, int depth
 {
 	if (start < end)
 	{
-		if (end - start + 1 <= 20)
+		if (end - start + 1 <= 24)
 		{
 			for (size_t i = start + 1; i <= end; ++i)
 			{
