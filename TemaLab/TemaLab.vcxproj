@@ -148,8 +148,7 @@
     <ClCompile Include="TemaLab.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="output.txt" />
-    <Text Include="output2.txt" />
+    <Text Include="results.txt" />
     <Text Include="teste.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -159,9 +158,6 @@
     <ClInclude Include="quicksort.h" />
     <ClInclude Include="insertionsort.h" />
     <ClInclude Include="radixsort.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="out.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

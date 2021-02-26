@@ -177,25 +177,6 @@ void print_result(Result& result, std::ostream& out)
 	out << "\n"; // gata tabelul
 }
 
-void print_result_csv(Result& result, const char* file_name)
-{
-	std::ofstream out(file_name);
-
-	out << "Name";
-	for (auto& subcase_info : result.subcase_info.begin()->second)
-		out << "," << subcase_info.first;
-	out << '\n';
-	for (auto& info : result.subcase_info)
-	{
-		out << info.first;
-		for (auto& subcase_info : info.second)
-			out << "," << subcase_info.second;
-		out << '\n';
-	}
-
-}
-
-
 int main() {
 	std::ofstream output("output.txt");
 
@@ -212,7 +193,7 @@ int main() {
 			{		
 				std::cout << "Se calculeaza timpul pentru " << sort_names[i] << " cazul " << subcase << " " << test.first << " " << test.second << '\n';
 
-				if (sort_names[i] == "Insertion Sort" && subcase != "Sorted" && test.first >= 10000)
+				if (sort_names[i] == "Insertion Sort" && subcase != "Sorted" && test.first >= 100000)
 				{
 					result.subcase_info[sort_names[i]].push_back({ subcase,-1 });
 					continue;
@@ -246,8 +227,7 @@ int main() {
 			}
 		}
 		print_result(result, std::cout);
-		print_result_csv(result, "out.csv");
-		//print_result(result, output);
+		print_result(result, output);
 	}
 	return 0;
 }

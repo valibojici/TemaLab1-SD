@@ -41,10 +41,7 @@
     <Text Include="teste.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="output2.txt">
+    <Text Include="results.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
@@ -67,10 +64,5 @@
     <ClInclude Include="mergesort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="out.csv">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
