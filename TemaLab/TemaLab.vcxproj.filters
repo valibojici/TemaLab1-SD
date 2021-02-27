@@ -44,6 +44,9 @@
     <Text Include="results.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="countingsort.h">
