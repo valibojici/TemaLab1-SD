@@ -1,9 +1,5 @@
 #include "quicksort.h"
 #include "insertionsort.h"
-#include <iostream>
-#include <random>
-
-typedef unsigned long long ULL;
 
 
 size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
@@ -25,8 +21,8 @@ size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
 			return end;
 
 		std::swap(nums[start], nums[end]);
-		++start;
-		--end;
+		start++;
+		end--;
 	}
 }
 
@@ -73,6 +69,7 @@ void quick_sort_middle(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	if (start < end) {
 		size_t p = partition_middle(nums, start, end);
+
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if(p - start + 1 < end - p)
 		{

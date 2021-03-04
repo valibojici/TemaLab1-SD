@@ -1,6 +1,6 @@
 #include "insertionsort.h"
 
-typedef unsigned long long ULL;
+
 void insertion_sort(std::vector<ULL>& nums, size_t start, size_t end)
 {
 	for (unsigned int i = start+1; i <= end; ++i)

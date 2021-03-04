@@ -1,7 +1,5 @@
 #include "radixsort.h"
 
-typedef unsigned long long ULL;
-
 
 void radix_sort(std::vector<ULL>& nums, size_t start, size_t end, unsigned exponent)
 {

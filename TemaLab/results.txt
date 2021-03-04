@@ -1,359 +1,314 @@
 
 N = 100 Max = 10000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.01       ms|OK 0.01       ms|OK 0.03       ms|OK 0.02       ms|
-Insertion Sort       : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Quick Sort (median 3): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Quick Sort (middle)  : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Counting Sort        : OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
+Insertion Sort       : OK 0          ms|OK 0          ms|OK 0          ms|OK 0.01       ms|
+Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Merge Sort           : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Merge Sort(optimized): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Radix_16             : OK 0.02       ms|OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|
-Radix_256            : OK 0.02       ms|OK 0.02       ms|OK 0.02       ms|OK 0.01       ms|
+Quick Sort (median 3): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Quick Sort (middle)  : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Radix_16             : OK 0.03       ms|OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|
 Radix_2048           : OK 0.03       ms|OK 0.03       ms|OK 0.03       ms|OK 0.02       ms|
-Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-std::sort            : OK 0          ms|OK 0          ms|OK 0.01       ms|OK 0          ms|
+Radix_256            : OK 0.02       ms|OK 0.02       ms|OK 0.02       ms|OK 0.02       ms|
+std::sort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+
+
+N = 1000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 0.03       ms|OK 0.03       ms|OK 0.03       ms|OK 0.02       ms|
+Insertion Sort       : OK 0.15       ms|OK 0          ms|OK 0.27       ms|OK 0.15       ms|
+Introsort            : OK 0.04       ms|OK 0.02       ms|OK 0.01       ms|OK 0.01       ms|
+Merge Sort           : OK 0.07       ms|OK 0.04       ms|OK 0.03       ms|OK 0.05       ms|
+Merge Sort(optimized): OK 0.06       ms|OK 0.01       ms|OK 0.02       ms|OK 0.03       ms|
+Quick Sort (median 3): OK 0.07       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
+Quick Sort (middle)  : OK 0.06       ms|OK 0.01       ms|OK 0.02       ms|OK 0.02       ms|
+Radix_16             : OK 0.06       ms|OK 0.08       ms|OK 0.05       ms|OK 0.07       ms|
+Radix_2048           : OK 0.17       ms|OK 0.21       ms|OK 0.19       ms|OK 0.07       ms|
+Radix_256            : OK 0.13       ms|OK 0.14       ms|OK 0.13       ms|OK 0.04       ms|
+std::sort            : OK 0.04       ms|OK 0.01       ms|OK 0.02       ms|OK 0.01       ms|
+
+
+N = 10000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 0.1        ms|OK 0.1        ms|OK 0.1        ms|OK 0.04       ms|
+Insertion Sort       : OK 13.24      ms|OK 0.01       ms|OK 26.59      ms|OK 11.42      ms|
+Introsort            : OK 0.5        ms|OK 0.07       ms|OK 0.07       ms|OK 0.22       ms|
+Merge Sort           : OK 0.88       ms|OK 0.43       ms|OK 0.29       ms|OK 0.56       ms|
+Merge Sort(optimized): OK 0.66       ms|OK 0.2        ms|OK 0.27       ms|OK 0.39       ms|
+Quick Sort (median 3): OK 0.65       ms|OK 0.19       ms|OK 0.19       ms|OK 0.31       ms|
+Quick Sort (middle)  : OK 0.63       ms|OK 0.17       ms|OK 0.19       ms|OK 0.3        ms|
+Radix_16             : OK 0.43       ms|OK 0.41       ms|OK 0.41       ms|OK 0.44       ms|
+Radix_2048           : OK 1.24       ms|OK 1.3        ms|OK 1.18       ms|OK 0.35       ms|
+Radix_256            : OK 0.53       ms|OK 0.57       ms|OK 0.48       ms|OK 0.32       ms|
+std::sort            : OK 0.54       ms|OK 0.1        ms|OK 0.12       ms|OK 0.13       ms|
+
+
+N = 100000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 0.4        ms|OK 0.39       ms|OK 0.41       ms|OK 0.28       ms|
+Insertion Sort       : OK 1386.28    ms|OK 0.11       ms|OK 2784.16    ms|OK 1203.27    ms|
+Introsort            : OK 5.74       ms|OK 0.82       ms|OK 0.85       ms|OK 2.28       ms|
+Merge Sort           : OK 10.13      ms|OK 4.28       ms|OK 3.43       ms|OK 5.95       ms|
+Merge Sort(optimized): OK 8.52       ms|OK 2.6        ms|OK 2.89       ms|OK 4.36       ms|
+Quick Sort (median 3): OK 6.8        ms|OK 1.95       ms|OK 2.01       ms|OK 3.16       ms|
+Quick Sort (middle)  : OK 6.34       ms|OK 1.68       ms|OK 1.82       ms|OK 2.9        ms|
+Radix_16             : OK 3.22       ms|OK 3.29       ms|OK 2.91       ms|OK 2.96       ms|
+Radix_2048           : OK 5.27       ms|OK 4.39       ms|OK 4.37       ms|OK 1.76       ms|
+Radix_256            : OK 3.22       ms|OK 2.97       ms|OK 2.81       ms|OK 1.6        ms|
+std::sort            : OK 6.02       ms|OK 1.04       ms|OK 1.3        ms|OK 1.12       ms|
+
+
+N = 1000000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 3.09       ms|OK 3.72       ms|OK 3.72       ms|OK 2.9        ms|
+Insertion Sort       : Foarte incet    |OK 1.13       ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 57.05      ms|OK 10.46      ms|OK 10.5       ms|OK 24.61      ms|
+Merge Sort           : OK 110.83     ms|OK 44.84      ms|OK 40.5       ms|OK 67.53      ms|
+Merge Sort(optimized): OK 95.45      ms|OK 32.76      ms|OK 30.39      ms|OK 52.26      ms|
+Quick Sort (median 3): OK 66.37      ms|OK 19.75      ms|OK 19.78      ms|OK 33.48      ms|
+Quick Sort (middle)  : OK 61.15      ms|OK 16.92      ms|OK 17.18      ms|OK 30.19      ms|
+Radix_16             : OK 31.1       ms|OK 30.02      ms|OK 27.25      ms|OK 32.05      ms|
+Radix_2048           : OK 35.3       ms|OK 25.87      ms|OK 24.25      ms|OK 19.62      ms|
+Radix_256            : OK 27.21      ms|OK 20.98      ms|OK 17.9       ms|OK 17.14      ms|
+std::sort            : OK 55.65      ms|OK 8.15       ms|OK 9.68       ms|OK 11.34      ms|
+
+
+N = 10000000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 31.61      ms|OK 38.59      ms|OK 39.14      ms|OK 30.43      ms|
+Insertion Sort       : Foarte incet    |OK 11.87      ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 590.06     ms|OK 123.09     ms|OK 126.16     ms|OK 264.42     ms|
+Merge Sort           : OK 1194.38    ms|OK 512.65     ms|OK 488.97     ms|OK 770.36     ms|
+Merge Sort(optimized): OK 1026.87    ms|OK 396.96     ms|OK 377.58     ms|OK 593.16     ms|
+Quick Sort (median 3): OK 680.63     ms|OK 211.01     ms|OK 214.79     ms|OK 352.68     ms|
+Quick Sort (middle)  : OK 632.4      ms|OK 191.47     ms|OK 193.76     ms|OK 329.99     ms|
+Radix_16             : OK 300.21     ms|OK 310.5      ms|OK 312.69     ms|OK 331.35     ms|
+Radix_2048           : OK 324.36     ms|OK 225.17     ms|OK 226.25     ms|OK 251.99     ms|
+Radix_256            : OK 247.63     ms|OK 216.9      ms|OK 220.89     ms|OK 232.16     ms|
+std::sort            : OK 552.42     ms|OK 79.66      ms|OK 85.92      ms|OK 127.21     ms|
+
+
+N = 100000000 Max = 10000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 318.24     ms|OK 391.22     ms|OK 389.69     ms|OK 303.33     ms|
+Insertion Sort       : Foarte incet    |OK 120.61     ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 6066       ms|OK 1483.65    ms|OK 1482.8     ms|OK 2909.93    ms|
+Merge Sort           : OK 12781.9    ms|OK 5896.73    ms|OK 5748.19    ms|OK 8394.01    ms|
+Merge Sort(optimized): OK 11014.4    ms|OK 4698.9     ms|OK 4569.4     ms|OK 6661.59    ms|
+Quick Sort (median 3): OK 6966.24    ms|OK 2369.65    ms|OK 2394.92    ms|OK 3806.16    ms|
+Quick Sort (middle)  : OK 6507.03    ms|OK 2112.1     ms|OK 2130.83    ms|OK 3534.52    ms|
+Radix_16             : OK 3044.92    ms|OK 3166.84    ms|OK 3155.45    ms|OK 3762.48    ms|
+Radix_2048           : OK 3493.62    ms|OK 2374.95    ms|OK 2385.32    ms|OK 2464.36    ms|
+Radix_256            : OK 2618.05    ms|OK 2353.66    ms|OK 2384.42    ms|OK 2557.12    ms|
+std::sort            : OK 5564.31    ms|OK 825.98     ms|OK 921.86     ms|OK 1211.76    ms|
 
 
 N = 100 Max = 10000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 14.02      ms|OK 14.45      ms|OK 17.39      ms|OK 13.54      ms|
+Counting Sort        : OK 15.18      ms|OK 14.58      ms|OK 14.8       ms|OK 11.4       ms|
 Insertion Sort       : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Merge Sort           : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Merge Sort(optimized): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Quick Sort (median 3): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Quick Sort (middle)  : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Merge Sort           : OK 0          ms|OK 0          ms|OK 0          ms|OK 0.01       ms|
-Merge Sort(optimized): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Radix_16             : OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
-Radix_256            : OK 0.03       ms|OK 0.03       ms|OK 0.03       ms|OK 0.02       ms|
-Radix_2048           : OK 0.04       ms|OK 0.04       ms|OK 0.04       ms|OK 0.04       ms|
-Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Radix_2048           : OK 0.04       ms|OK 0.04       ms|OK 0.04       ms|OK 0.03       ms|
+Radix_256            : OK 0.02       ms|OK 0.03       ms|OK 0.02       ms|OK 0.02       ms|
 std::sort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+
+
+N = 1000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 15.13      ms|OK 15.01      ms|OK 14.86      ms|OK 13.37      ms|
+Insertion Sort       : OK 0.13       ms|OK 0          ms|OK 0.24       ms|OK 0.11       ms|
+Introsort            : OK 0.03       ms|OK 0          ms|OK 0          ms|OK 0.01       ms|
+Merge Sort           : OK 0.06       ms|OK 0.03       ms|OK 0.02       ms|OK 0.04       ms|
+Merge Sort(optimized): OK 0.04       ms|OK 0.01       ms|OK 0.02       ms|OK 0.03       ms|
+Quick Sort (median 3): OK 0.05       ms|OK 0.01       ms|OK 0.02       ms|OK 0.02       ms|
+Quick Sort (middle)  : OK 0.05       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
+Radix_16             : OK 0.05       ms|OK 0.04       ms|OK 0.05       ms|OK 0.05       ms|
+Radix_2048           : OK 0.23       ms|OK 0.22       ms|OK 0.21       ms|OK 0.05       ms|
+Radix_256            : OK 0.15       ms|OK 0.14       ms|OK 0.14       ms|OK 0.04       ms|
+std::sort            : OK 0.03       ms|OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|
+
+
+N = 10000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 15.6       ms|OK 15.38      ms|OK 15.32      ms|OK 12.83      ms|
+Insertion Sort       : OK 12.91      ms|OK 0.01       ms|OK 25.81      ms|OK 11.09      ms|
+Introsort            : OK 0.48       ms|OK 0.05       ms|OK 0.05       ms|OK 0.2        ms|
+Merge Sort           : OK 0.83       ms|OK 0.28       ms|OK 0.28       ms|OK 0.51       ms|
+Merge Sort(optimized): OK 0.67       ms|OK 0.17       ms|OK 0.23       ms|OK 0.36       ms|
+Quick Sort (median 3): OK 0.61       ms|OK 0.12       ms|OK 0.13       ms|OK 0.28       ms|
+Quick Sort (middle)  : OK 0.64       ms|OK 0.1        ms|OK 0.1        ms|OK 0.26       ms|
+Radix_16             : OK 0.27       ms|OK 0.27       ms|OK 0.31       ms|OK 0.32       ms|
+Radix_2048           : OK 1.33       ms|OK 1.31       ms|OK 1.34       ms|OK 0.21       ms|
+Radix_256            : OK 0.48       ms|OK 0.45       ms|OK 0.45       ms|OK 0.21       ms|
+std::sort            : OK 0.54       ms|OK 0.09       ms|OK 0.1        ms|OK 0.11       ms|
+
+
+N = 100000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 18.4       ms|OK 17.58      ms|OK 17.57      ms|OK 11.32      ms|
+Insertion Sort       : OK 1373.74    ms|OK 0.1        ms|OK 2786       ms|OK 1197.85    ms|
+Introsort            : OK 6.05       ms|OK 0.63       ms|OK 0.69       ms|OK 2.36       ms|
+Merge Sort           : OK 10.32      ms|OK 3.59       ms|OK 3.3        ms|OK 5.9        ms|
+Merge Sort(optimized): OK 8.64       ms|OK 2.43       ms|OK 2.73       ms|OK 4.27       ms|
+Quick Sort (median 3): OK 7.51       ms|OK 1.3        ms|OK 1.36       ms|OK 3.31       ms|
+Quick Sort (middle)  : OK 7.29       ms|OK 1.03       ms|OK 1.11       ms|OK 2.84       ms|
+Radix_16             : OK 2.52       ms|OK 2.47       ms|OK 2.42       ms|OK 2.8        ms|
+Radix_2048           : OK 5.23       ms|OK 5.21       ms|OK 5.15       ms|OK 1.9        ms|
+Radix_256            : OK 2.27       ms|OK 2.28       ms|OK 2.24       ms|OK 1.86       ms|
+std::sort            : OK 6.7        ms|OK 0.97       ms|OK 1.17       ms|OK 1.11       ms|
+
+
+N = 1000000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 42.64      ms|OK 29.78      ms|OK 29.58      ms|OK 14.9       ms|
+Insertion Sort       : Foarte incet    |OK 1.15       ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 71.38      ms|OK 7.98       ms|OK 8.24       ms|OK 24.26      ms|
+Merge Sort           : OK 124.62     ms|OK 43.66      ms|OK 40.36      ms|OK 67.16      ms|
+Merge Sort(optimized): OK 109.29     ms|OK 32.41      ms|OK 34.01      ms|OK 51.97      ms|
+Quick Sort (median 3): OK 86.22      ms|OK 15.56      ms|OK 15.85      ms|OK 33.16      ms|
+Quick Sort (middle)  : OK 84.58      ms|OK 12.92      ms|OK 13.31      ms|OK 30.87      ms|
+Radix_16             : OK 29.32      ms|OK 29.27      ms|OK 29.03      ms|OK 40.9       ms|
+Radix_2048           : OK 40.64      ms|OK 41.06      ms|OK 40.85      ms|OK 26.97      ms|
+Radix_256            : OK 22.35      ms|OK 22.44      ms|OK 22.94      ms|OK 24.61      ms|
+std::sort            : OK 81.24      ms|OK 11.63      ms|OK 14.43      ms|OK 11.51      ms|
+
+
+N = 10000000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 263.75     ms|OK 103.13     ms|OK 103.62     ms|OK 41.15      ms|
+Insertion Sort       : Foarte incet    |OK 11.84      ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 842.67     ms|OK 103.05     ms|OK 105.61     ms|OK 278.63     ms|
+Merge Sort           : OK 1468.28    ms|OK 590.88     ms|OK 487.03     ms|OK 757.96     ms|
+Merge Sort(optimized): OK 1301.54    ms|OK 410.72     ms|OK 467.61     ms|OK 591.49     ms|
+Quick Sort (median 3): OK 1005.55    ms|OK 226.76     ms|OK 229.29     ms|OK 363.29     ms|
+Quick Sort (middle)  : OK 957.92     ms|OK 202.25     ms|OK 205.3      ms|OK 326.95     ms|
+Radix_16             : OK 319.42     ms|OK 323.8      ms|OK 323.56     ms|OK 485.57     ms|
+Radix_2048           : OK 444.37     ms|OK 433.68     ms|OK 438.64     ms|OK 352.95     ms|
+Radix_256            : OK 244.95     ms|OK 247.48     ms|OK 244.63     ms|OK 336.45     ms|
+std::sort            : OK 960.96     ms|OK 154.42     ms|OK 190.76     ms|OK 118.61     ms|
+
+
+N = 100000000 Max = 10000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : OK 2007.18    ms|OK 420.18     ms|OK 419.79     ms|OK 310.9      ms|
+Insertion Sort       : Foarte incet    |OK 117.82     ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 9443.44    ms|OK 1347.09    ms|OK 1379.08    ms|OK 2974.75    ms|
+Merge Sort           : OK 16620.2    ms|OK 6678.09    ms|OK 5740.05    ms|OK 8382.5     ms|
+Merge Sort(optimized): OK 14852.3    ms|OK 4968.17    ms|OK 5352.99    ms|OK 6663.71    ms|
+Quick Sort (median 3): OK 10511.4    ms|OK 2517.56    ms|OK 2541.66    ms|OK 3867.12    ms|
+Quick Sort (middle)  : OK 9873.09    ms|OK 2238.93    ms|OK 2265.68    ms|OK 3521.31    ms|
+Radix_16             : OK 3291.94    ms|OK 3425.52    ms|OK 3444.89    ms|OK 4410.68    ms|
+Radix_2048           : OK 4865.69    ms|OK 3699.49    ms|OK 3722.66    ms|OK 3586.89    ms|
+Radix_256            : OK 2749.76    ms|OK 2622.37    ms|OK 2649.08    ms|OK 3590.85    ms|
+std::sort            : OK 10384.8    ms|OK 1704.38    ms|OK 2163.43    ms|OK 1169.76    ms|
 
 
 N = 100 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
 Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
 Insertion Sort       : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Merge Sort           : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Merge Sort(optimized): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Quick Sort (median 3): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
 Quick Sort (middle)  : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Merge Sort           : OK 0.01       ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Merge Sort(optimized): OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-Radix_16             : OK 0.02       ms|OK 0.01       ms|OK 0.02       ms|OK 0.02       ms|
-Radix_256            : OK 0.04       ms|OK 0.05       ms|OK 0.06       ms|OK 0.04       ms|
-Radix_2048           : OK 0.06       ms|OK 0.07       ms|OK 0.08       ms|OK 0.05       ms|
-Introsort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
+Radix_16             : OK 0.02       ms|OK 0.02       ms|OK 0.02       ms|OK 0.02       ms|
+Radix_2048           : OK 0.05       ms|OK 0.05       ms|OK 0.06       ms|OK 0.03       ms|
+Radix_256            : OK 0.03       ms|OK 0.03       ms|OK 0.04       ms|OK 0.03       ms|
 std::sort            : OK 0          ms|OK 0          ms|OK 0          ms|OK 0          ms|
-
-
-N = 1000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.02       ms|OK 0.04       ms|OK 0.03       ms|OK 0.02       ms|
-Insertion Sort       : OK 0.14       ms|OK 0          ms|OK 0.25       ms|OK 0.12       ms|
-Quick Sort (median 3): OK 0.04       ms|OK 0.02       ms|OK 0.01       ms|OK 0.02       ms|
-Quick Sort (middle)  : OK 0.06       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
-Merge Sort           : OK 0.06       ms|OK 0.02       ms|OK 0.03       ms|OK 0.05       ms|
-Merge Sort(optimized): OK 0.06       ms|OK 0.01       ms|OK 0.02       ms|OK 0.03       ms|
-Radix_16             : OK 0.08       ms|OK 0.06       ms|OK 0.05       ms|OK 0.06       ms|
-Radix_256            : OK 0.13       ms|OK 0.15       ms|OK 0.12       ms|OK 0.04       ms|
-Radix_2048           : OK 0.19       ms|OK 0.17       ms|OK 0.17       ms|OK 0.08       ms|
-Introsort            : OK 0.04       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
-std::sort            : OK 0.05       ms|OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|
-
-
-N = 1000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 14.88      ms|OK 14.72      ms|OK 18.85      ms|OK 11.53      ms|
-Insertion Sort       : OK 0.14       ms|OK 0          ms|OK 0.25       ms|OK 0.12       ms|
-Quick Sort (median 3): OK 0.06       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
-Quick Sort (middle)  : OK 0.06       ms|OK 0.01       ms|OK 0.01       ms|OK 0.02       ms|
-Merge Sort           : OK 0.07       ms|OK 0.02       ms|OK 0.02       ms|OK 0.04       ms|
-Merge Sort(optimized): OK 0.07       ms|OK 0.01       ms|OK 0.02       ms|OK 0.03       ms|
-Radix_16             : OK 0.06       ms|OK 0.05       ms|OK 0.05       ms|OK 0.05       ms|
-Radix_256            : OK 0.15       ms|OK 0.14       ms|OK 0.14       ms|OK 0.05       ms|
-Radix_2048           : OK 0.25       ms|OK 0.25       ms|OK 0.25       ms|OK 0.08       ms|
-Introsort            : OK 0.05       ms|OK 0          ms|OK 0          ms|OK 0.01       ms|
-std::sort            : OK 0.05       ms|OK 0.01       ms|OK 0.01       ms|OK 0.01       ms|
 
 
 N = 1000 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
 Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : OK 0.13       ms|OK 0          ms|OK 0.15       ms|OK 0.11       ms|
-Quick Sort (median 3): OK 0.05       ms|OK 0.01       ms|OK 0.04       ms|OK 0.02       ms|
-Quick Sort (middle)  : OK 0.05       ms|OK 0.01       ms|OK 0.04       ms|OK 0.02       ms|
-Merge Sort           : OK 0.06       ms|OK 0.02       ms|OK 0.06       ms|OK 0.04       ms|
-Merge Sort(optimized): OK 0.04       ms|OK 0.01       ms|OK 0.07       ms|OK 0.03       ms|
-Radix_16             : OK 0.06       ms|OK 0.06       ms|OK 0.06       ms|OK 0.08       ms|
-Radix_256            : OK 0.15       ms|OK 0.15       ms|OK 0.15       ms|OK 0.07       ms|
-Radix_2048           : OK 0.38       ms|OK 0.34       ms|OK 0.35       ms|OK 0.07       ms|
+Insertion Sort       : OK 0.13       ms|OK 0          ms|OK 0.13       ms|OK 0.13       ms|
 Introsort            : OK 0.03       ms|OK 0          ms|OK 0.03       ms|OK 0.01       ms|
+Merge Sort           : OK 0.06       ms|OK 0.02       ms|OK 0.06       ms|OK 0.04       ms|
+Merge Sort(optimized): OK 0.04       ms|OK 0.01       ms|OK 0.04       ms|OK 0.03       ms|
+Quick Sort (median 3): OK 0.04       ms|OK 0.01       ms|OK 0.04       ms|OK 0.02       ms|
+Quick Sort (middle)  : OK 0.04       ms|OK 0.01       ms|OK 0.04       ms|OK 0.02       ms|
+Radix_16             : OK 0.06       ms|OK 0.06       ms|OK 0.07       ms|OK 0.07       ms|
+Radix_2048           : OK 0.35       ms|OK 0.34       ms|OK 0.33       ms|OK 0.07       ms|
+Radix_256            : OK 0.16       ms|OK 0.17       ms|OK 0.16       ms|OK 0.07       ms|
 std::sort            : OK 0.03       ms|OK 0.01       ms|OK 0.03       ms|OK 0.01       ms|
-
-
-N = 5000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.07       ms|OK 0.07       ms|OK 0.06       ms|OK 0.02       ms|
-Insertion Sort       : OK 3.17       ms|OK 0.01       ms|OK 6.4        ms|OK 2.85       ms|
-Quick Sort (median 3): OK 0.29       ms|OK 0.07       ms|OK 0.07       ms|OK 0.15       ms|
-Quick Sort (middle)  : OK 0.27       ms|OK 0.06       ms|OK 0.07       ms|OK 0.12       ms|
-Merge Sort           : OK 0.37       ms|OK 0.14       ms|OK 0.13       ms|OK 0.26       ms|
-Merge Sort(optimized): OK 0.3        ms|OK 0.08       ms|OK 0.11       ms|OK 0.17       ms|
-Radix_16             : OK 0.19       ms|OK 0.18       ms|OK 0.16       ms|OK 0.21       ms|
-Radix_256            : OK 0.32       ms|OK 0.31       ms|OK 0.28       ms|OK 0.13       ms|
-Radix_2048           : OK 0.67       ms|OK 0.59       ms|OK 0.62       ms|OK 0.17       ms|
-Introsort            : OK 0.21       ms|OK 0.02       ms|OK 0.02       ms|OK 0.1        ms|
-std::sort            : OK 0.23       ms|OK 0.04       ms|OK 0.05       ms|OK 0.05       ms|
-
-
-N = 5000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 14.9       ms|OK 15.84      ms|OK 14.86      ms|OK 13.03      ms|
-Insertion Sort       : OK 3.14       ms|OK 0.01       ms|OK 6.23       ms|OK 2.69       ms|
-Quick Sort (median 3): OK 0.31       ms|OK 0.06       ms|OK 0.06       ms|OK 0.15       ms|
-Quick Sort (middle)  : OK 0.28       ms|OK 0.04       ms|OK 0.04       ms|OK 0.12       ms|
-Merge Sort           : OK 0.37       ms|OK 0.13       ms|OK 0.12       ms|OK 0.24       ms|
-Merge Sort(optimized): OK 0.33       ms|OK 0.08       ms|OK 0.09       ms|OK 0.19       ms|
-Radix_16             : OK 0.16       ms|OK 0.23       ms|OK 0.15       ms|OK 0.24       ms|
-Radix_256            : OK 0.32       ms|OK 0.35       ms|OK 0.34       ms|OK 0.12       ms|
-Radix_2048           : OK 0.93       ms|OK 0.96       ms|OK 0.88       ms|OK 0.14       ms|
-Introsort            : OK 0.21       ms|OK 0.02       ms|OK 0.02       ms|OK 0.1        ms|
-std::sort            : OK 0.23       ms|OK 0.04       ms|OK 0.05       ms|OK 0.05       ms|
-
-
-N = 5000 Max = 1000000000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : OK 3.07       ms|OK 0.01       ms|OK 3.07       ms|OK 2.73       ms|
-Quick Sort (median 3): OK 0.3        ms|OK 0.05       ms|OK 0.29       ms|OK 0.16       ms|
-Quick Sort (middle)  : OK 0.28       ms|OK 0.04       ms|OK 0.29       ms|OK 0.15       ms|
-Merge Sort           : OK 0.37       ms|OK 0.13       ms|OK 0.34       ms|OK 0.25       ms|
-Merge Sort(optimized): OK 0.32       ms|OK 0.07       ms|OK 0.26       ms|OK 0.16       ms|
-Radix_16             : OK 0.21       ms|OK 0.22       ms|OK 0.21       ms|OK 0.26       ms|
-Radix_256            : OK 0.34       ms|OK 0.37       ms|OK 0.36       ms|OK 0.19       ms|
-Radix_2048           : OK 1.07       ms|OK 1.08       ms|OK 1.08       ms|OK 0.17       ms|
-Introsort            : OK 0.22       ms|OK 0.02       ms|OK 0.22       ms|OK 0.11       ms|
-std::sort            : OK 0.24       ms|OK 0.04       ms|OK 0.24       ms|OK 0.05       ms|
-
-
-N = 10000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.09       ms|OK 0.1        ms|OK 0.1        ms|OK 0.03       ms|
-Insertion Sort       : OK 12.69      ms|OK 0.01       ms|OK 25.83      ms|OK 10.96      ms|
-Quick Sort (median 3): OK 0.62       ms|OK 0.21       ms|OK 0.17       ms|OK 0.31       ms|
-Quick Sort (middle)  : OK 0.6        ms|OK 0.15       ms|OK 0.15       ms|OK 0.23       ms|
-Merge Sort           : OK 0.79       ms|OK 0.32       ms|OK 0.26       ms|OK 0.53       ms|
-Merge Sort(optimized): OK 0.65       ms|OK 0.17       ms|OK 0.26       ms|OK 0.35       ms|
-Radix_16             : OK 0.24       ms|OK 0.3        ms|OK 0.24       ms|OK 0.24       ms|
-Radix_256            : OK 0.42       ms|OK 0.44       ms|OK 0.41       ms|OK 0.22       ms|
-Radix_2048           : OK 1.15       ms|OK 1.08       ms|OK 0.98       ms|OK 0.19       ms|
-Introsort            : OK 0.49       ms|OK 0.05       ms|OK 0.06       ms|OK 0.2        ms|
-std::sort            : OK 0.54       ms|OK 0.09       ms|OK 0.15       ms|OK 0.12       ms|
-
-
-N = 10000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 15.31      ms|OK 16.56      ms|OK 15.22      ms|OK 12.34      ms|
-Insertion Sort       : OK 12.63      ms|OK 0.01       ms|OK 25.51      ms|OK 11.18      ms|
-Quick Sort (median 3): OK 0.61       ms|OK 0.11       ms|OK 0.13       ms|OK 0.33       ms|
-Quick Sort (middle)  : OK 0.58       ms|OK 0.09       ms|OK 0.09       ms|OK 0.26       ms|
-Merge Sort           : OK 0.83       ms|OK 0.27       ms|OK 0.27       ms|OK 0.51       ms|
-Merge Sort(optimized): OK 0.64       ms|OK 0.18       ms|OK 0.21       ms|OK 0.36       ms|
-Radix_16             : OK 0.29       ms|OK 0.3        ms|OK 0.29       ms|OK 0.34       ms|
-Radix_256            : OK 0.49       ms|OK 0.44       ms|OK 0.45       ms|OK 0.24       ms|
-Radix_2048           : OK 1.35       ms|OK 1.39       ms|OK 1.46       ms|OK 0.21       ms|
-Introsort            : OK 0.46       ms|OK 0.05       ms|OK 0.05       ms|OK 0.21       ms|
-std::sort            : OK 0.56       ms|OK 0.09       ms|OK 0.1        ms|OK 0.12       ms|
 
 
 N = 10000 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
 Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : OK 12.7       ms|OK 0.01       ms|OK 12.78      ms|OK 11.11      ms|
-Quick Sort (median 3): OK 0.63       ms|OK 0.11       ms|OK 0.65       ms|OK 0.32       ms|
-Quick Sort (middle)  : OK 0.63       ms|OK 0.09       ms|OK 0.6        ms|OK 0.26       ms|
-Merge Sort           : OK 0.81       ms|OK 0.27       ms|OK 0.74       ms|OK 0.52       ms|
-Merge Sort(optimized): OK 0.65       ms|OK 0.16       ms|OK 0.55       ms|OK 0.35       ms|
-Radix_16             : OK 0.43       ms|OK 0.45       ms|OK 0.43       ms|OK 0.51       ms|
-Radix_256            : OK 0.52       ms|OK 0.52       ms|OK 0.5        ms|OK 0.36       ms|
-Radix_2048           : OK 1.54       ms|OK 1.51       ms|OK 1.52       ms|OK 0.29       ms|
-Introsort            : OK 0.49       ms|OK 0.05       ms|OK 0.53       ms|OK 0.21       ms|
-std::sort            : OK 0.52       ms|OK 0.08       ms|OK 0.52       ms|OK 0.12       ms|
-
-
-N = 50000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.22       ms|OK 0.23       ms|OK 0.23       ms|OK 0.14       ms|
-Insertion Sort       : OK 331.39     ms|OK 0.06       ms|OK 683.6      ms|OK 288.72     ms|
-Quick Sort (median 3): OK 3.45       ms|OK 1.01       ms|OK 0.97       ms|OK 1.61       ms|
-Quick Sort (middle)  : OK 3.12       ms|OK 0.81       ms|OK 0.85       ms|OK 1.31       ms|
-Merge Sort           : OK 4.65       ms|OK 1.8        ms|OK 1.55       ms|OK 2.81       ms|
-Merge Sort(optimized): OK 3.96       ms|OK 1.15       ms|OK 1.48       ms|OK 1.97       ms|
-Radix_16             : OK 1.4        ms|OK 1.18       ms|OK 1.03       ms|OK 1.13       ms|
-Radix_256            : OK 1.26       ms|OK 1.09       ms|OK 1.21       ms|OK 0.74       ms|
-Radix_2048           : OK 3.02       ms|OK 2.57       ms|OK 2.57       ms|OK 0.75       ms|
-Introsort            : OK 2.82       ms|OK 0.41       ms|OK 0.41       ms|OK 1.06       ms|
-std::sort            : OK 3          ms|OK 0.49       ms|OK 0.79       ms|OK 0.55       ms|
-
-
-N = 50000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 16.47      ms|OK 16.04      ms|OK 16.33      ms|OK 10.15      ms|
-Insertion Sort       : OK 331.66     ms|OK 0.06       ms|OK 677.71     ms|OK 287.56     ms|
-Quick Sort (median 3): OK 3.59       ms|OK 0.6        ms|OK 0.6        ms|OK 1.62       ms|
-Quick Sort (middle)  : OK 3.39       ms|OK 0.48       ms|OK 0.5        ms|OK 1.3        ms|
-Merge Sort           : OK 4.7        ms|OK 1.54       ms|OK 1.57       ms|OK 2.78       ms|
-Merge Sort(optimized): OK 3.94       ms|OK 0.99       ms|OK 1.26       ms|OK 2.04       ms|
-Radix_16             : OK 1.32       ms|OK 1.33       ms|OK 1.3        ms|OK 1.44       ms|
-Radix_256            : OK 1.43       ms|OK 1.34       ms|OK 1.36       ms|OK 1.04       ms|
-Radix_2048           : OK 3.47       ms|OK 3.55       ms|OK 3.35       ms|OK 1.09       ms|
-Introsort            : OK 2.74       ms|OK 0.28       ms|OK 0.32       ms|OK 1.06       ms|
-std::sort            : OK 3.16       ms|OK 0.5        ms|OK 0.62       ms|OK 0.56       ms|
-
-
-N = 50000 Max = 1000000000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : OK 331.76     ms|OK 0.05       ms|OK 329.49     ms|OK 287.62     ms|
-Quick Sort (median 3): OK 3.5        ms|OK 0.63       ms|OK 3.61       ms|OK 1.63       ms|
-Quick Sort (middle)  : OK 3.37       ms|OK 0.47       ms|OK 3.34       ms|OK 1.38       ms|
-Merge Sort           : OK 4.75       ms|OK 1.52       ms|OK 3.82       ms|OK 2.75       ms|
-Merge Sort(optimized): OK 3.98       ms|OK 1          ms|OK 2.96       ms|OK 2.05       ms|
-Radix_16             : OK 2.3        ms|OK 2.34       ms|OK 2.06       ms|OK 2.46       ms|
-Radix_256            : OK 1.68       ms|OK 1.64       ms|OK 1.74       ms|OK 1.53       ms|
-Radix_2048           : OK 3.87       ms|OK 3.88       ms|OK 3.94       ms|OK 1.4        ms|
-Introsort            : OK 2.8        ms|OK 0.28       ms|OK 2.8        ms|OK 1.07       ms|
-std::sort            : OK 3.17       ms|OK 0.46       ms|OK 3.12       ms|OK 0.59       ms|
-
-
-N = 100000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 0.36       ms|OK 0.39       ms|OK 0.37       ms|OK 0.27       ms|
-Insertion Sort       : Foarte incet    |OK 0.1        ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 6.76       ms|OK 1.88       ms|OK 1.95       ms|OK 3.36       ms|
-Quick Sort (middle)  : OK 6.25       ms|OK 1.57       ms|OK 1.82       ms|OK 2.81       ms|
-Merge Sort           : OK 9.56       ms|OK 3.59       ms|OK 3.16       ms|OK 5.8        ms|
-Merge Sort(optimized): OK 8.2        ms|OK 2.35       ms|OK 2.73       ms|OK 4.16       ms|
-Radix_16             : OK 2.39       ms|OK 2.72       ms|OK 2.85       ms|OK 2.62       ms|
-Radix_256            : OK 2.33       ms|OK 1.91       ms|OK 2.22       ms|OK 1.66       ms|
-Radix_2048           : OK 4.66       ms|OK 3.47       ms|OK 3.81       ms|OK 1.9        ms|
-Introsort            : OK 5.75       ms|OK 0.9        ms|OK 0.8        ms|OK 2.38       ms|
-std::sort            : OK 6.17       ms|OK 0.99       ms|OK 1.51       ms|OK 1.23       ms|
-
-
-N = 100000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 17.99      ms|OK 17.25      ms|OK 16.83      ms|OK 11.42      ms|
-Insertion Sort       : Foarte incet    |OK 0.11       ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 7.46       ms|OK 1.27       ms|OK 1.29       ms|OK 3.46       ms|
-Quick Sort (middle)  : OK 7.12       ms|OK 1.01       ms|OK 1.05       ms|OK 2.86       ms|
-Merge Sort           : OK 10         ms|OK 3.21       ms|OK 3.14       ms|OK 5.86       ms|
-Merge Sort(optimized): OK 8.55       ms|OK 2.22       ms|OK 2.62       ms|OK 4.1        ms|
-Radix_16             : OK 2.66       ms|OK 2.53       ms|OK 2.72       ms|OK 3.13       ms|
-Radix_256            : OK 2.33       ms|OK 2.29       ms|OK 2.38       ms|OK 2.27       ms|
-Radix_2048           : OK 5.67       ms|OK 5.59       ms|OK 5.6        ms|OK 2.56       ms|
-Introsort            : OK 5.96       ms|OK 0.58       ms|OK 0.78       ms|OK 2.37       ms|
-std::sort            : OK 6.84       ms|OK 1.05       ms|OK 1.29       ms|OK 1.12       ms|
+Insertion Sort       : OK 12.66      ms|OK 0.01       ms|OK 12.87      ms|OK 11.16      ms|
+Introsort            : OK 0.48       ms|OK 0.05       ms|OK 0.48       ms|OK 0.23       ms|
+Merge Sort           : OK 0.82       ms|OK 0.3        ms|OK 0.75       ms|OK 0.51       ms|
+Merge Sort(optimized): OK 0.66       ms|OK 0.17       ms|OK 0.57       ms|OK 0.35       ms|
+Quick Sort (median 3): OK 0.62       ms|OK 0.12       ms|OK 0.64       ms|OK 0.29       ms|
+Quick Sort (middle)  : OK 0.61       ms|OK 0.1        ms|OK 0.63       ms|OK 0.27       ms|
+Radix_16             : OK 0.39       ms|OK 0.39       ms|OK 0.4        ms|OK 0.47       ms|
+Radix_2048           : OK 1.59       ms|OK 1.56       ms|OK 1.58       ms|OK 0.29       ms|
+Radix_256            : OK 0.53       ms|OK 0.53       ms|OK 0.54       ms|OK 0.32       ms|
+std::sort            : OK 0.56       ms|OK 0.08       ms|OK 0.53       ms|OK 0.11       ms|
 
 
 N = 100000 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
 Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : Foarte incet    |OK 0.11       ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 7.44       ms|OK 1.2        ms|OK 7.53       ms|OK 3.36       ms|
-Quick Sort (middle)  : OK 7.19       ms|OK 1.01       ms|OK 7.09       ms|OK 2.7        ms|
-Merge Sort           : OK 10.02      ms|OK 3.21       ms|OK 7.67       ms|OK 5.82       ms|
-Merge Sort(optimized): OK 8.42       ms|OK 2.18       ms|OK 6.23       ms|OK 4.15       ms|
-Radix_16             : OK 3.84       ms|OK 3.9        ms|OK 3.98       ms|OK 4.66       ms|
-Radix_256            : OK 2.95       ms|OK 2.9        ms|OK 3.05       ms|OK 3.96       ms|
-Radix_2048           : OK 6.34       ms|OK 6.13       ms|OK 6.38       ms|OK 3.18       ms|
-Introsort            : OK 5.95       ms|OK 0.58       ms|OK 6.02       ms|OK 2.35       ms|
-std::sort            : OK 6.79       ms|OK 1.09       ms|OK 6.81       ms|OK 1.11       ms|
-
-
-N = 1000000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 3.06       ms|OK 3.75       ms|OK 3.72       ms|OK 2.92       ms|
-Insertion Sort       : Foarte incet    |OK 1.19       ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 67.52      ms|OK 23.63      ms|OK 23.76      ms|OK 34.46      ms|
-Quick Sort (middle)  : OK 60.58      ms|OK 15.99      ms|OK 16.46      ms|OK 29.4       ms|
-Merge Sort           : OK 106.91     ms|OK 42.12      ms|OK 39.33      ms|OK 65.56      ms|
-Merge Sort(optimized): OK 92.64      ms|OK 32.59      ms|OK 30.55      ms|OK 51.14      ms|
-Radix_16             : OK 30.5       ms|OK 27.7       ms|OK 27.09      ms|OK 30.5       ms|
-Radix_256            : OK 25.98      ms|OK 20.37      ms|OK 17.37      ms|OK 16.35      ms|
-Radix_2048           : OK 33.03      ms|OK 25.6       ms|OK 24.31      ms|OK 19.71      ms|
-Introsort            : OK 57.42      ms|OK 11.81      ms|OK 12.16      ms|OK 24.26      ms|
-std::sort            : OK 55.64      ms|OK 8.27       ms|OK 9.68       ms|OK 11.83      ms|
-
-
-N = 1000000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 42.82      ms|OK 29.77      ms|OK 29.53      ms|OK 15.52      ms|
-Insertion Sort       : Foarte incet    |OK 1.12       ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 85.99      ms|OK 14.84      ms|OK 14.85      ms|OK 34.54      ms|
-Quick Sort (middle)  : OK 83.9       ms|OK 12.54      ms|OK 12.37      ms|OK 29.32      ms|
-Merge Sort           : OK 121.08     ms|OK 40.54      ms|OK 40.13      ms|OK 65.66      ms|
-Merge Sort(optimized): OK 107.33     ms|OK 30.34      ms|OK 34.29      ms|OK 50.74      ms|
-Radix_16             : OK 30.44      ms|OK 30.84      ms|OK 29.56      ms|OK 37.72      ms|
-Radix_256            : OK 24.18      ms|OK 24.95      ms|OK 23.9       ms|OK 22.79      ms|
-Radix_2048           : OK 42.04      ms|OK 41.76      ms|OK 42.28      ms|OK 26.49      ms|
-Introsort            : OK 71.11      ms|OK 7.56       ms|OK 7.66       ms|OK 23.77      ms|
-std::sort            : OK 82.42      ms|OK 12.09      ms|OK 17.66      ms|OK 12.28      ms|
+Insertion Sort       : OK 1379.09    ms|OK 0.11       ms|OK 1377.18    ms|OK 1199.49    ms|
+Introsort            : OK 6.07       ms|OK 0.68       ms|OK 6.03       ms|OK 2.32       ms|
+Merge Sort           : OK 10.2       ms|OK 3.38       ms|OK 8.12       ms|OK 5.91       ms|
+Merge Sort(optimized): OK 8.63       ms|OK 2.25       ms|OK 6.47       ms|OK 4.3        ms|
+Quick Sort (median 3): OK 7.57       ms|OK 1.28       ms|OK 7.55       ms|OK 3.2        ms|
+Quick Sort (middle)  : OK 7.38       ms|OK 1.04       ms|OK 7.22       ms|OK 2.74       ms|
+Radix_16             : OK 3.68       ms|OK 3.71       ms|OK 3.67       ms|OK 4.4        ms|
+Radix_2048           : OK 6.59       ms|OK 6.46       ms|OK 6.51       ms|OK 2.34       ms|
+Radix_256            : OK 2.91       ms|OK 2.89       ms|OK 2.94       ms|OK 2.86       ms|
+std::sort            : OK 6.75       ms|OK 0.99       ms|OK 6.67       ms|OK 1.12       ms|
 
 
 N = 1000000 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : Foarte incet    |OK 1.1        ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 86.11      ms|OK 13.92      ms|OK 85.44      ms|OK 34.84      ms|
-Quick Sort (middle)  : OK 82.34      ms|OK 11.42      ms|OK 82.21      ms|OK 29.8       ms|
-Merge Sort           : OK 121.74     ms|OK 39.99      ms|OK 86.24      ms|OK 65.46      ms|
-Merge Sort(optimized): OK 107.96     ms|OK 30.46      ms|OK 71.28      ms|OK 50.93      ms|
-Radix_16             : OK 41.72      ms|OK 42.65      ms|OK 41.83      ms|OK 57.67      ms|
-Radix_256            : OK 32.73      ms|OK 33.56      ms|OK 34.91      ms|OK 37.57      ms|
-Radix_2048           : OK 55.62      ms|OK 54.91      ms|OK 55.25      ms|OK 32.77      ms|
-Introsort            : OK 71.76      ms|OK 7.53       ms|OK 70.67      ms|OK 24.63      ms|
-std::sort            : OK 82.15      ms|OK 11.91      ms|OK 81.51      ms|OK 12.17      ms|
-
-
-N = 10000000 Max = 10000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 30.95      ms|OK 38.83      ms|OK 38.78      ms|OK 30.77      ms|
-Insertion Sort       : Foarte incet    |OK 11.9       ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 689.64     ms|OK 241.17     ms|OK 243.97     ms|OK 377.97     ms|
-Quick Sort (middle)  : OK 617.08     ms|OK 179.23     ms|OK 182.84     ms|OK 313.53     ms|
-Merge Sort           : OK 1151       ms|OK 491.09     ms|OK 475.37     ms|OK 743.3      ms|
-Merge Sort(optimized): OK 994.41     ms|OK 389.96     ms|OK 377.41     ms|OK 582.21     ms|
-Radix_16             : OK 303.49     ms|OK 317.72     ms|OK 319.33     ms|OK 435.78     ms|
-Radix_256            : OK 252.57     ms|OK 219.83     ms|OK 224.18     ms|OK 254.02     ms|
-Radix_2048           : OK 326.7      ms|OK 230.54     ms|OK 229.09     ms|OK 252.87     ms|
-Introsort            : OK 580.25     ms|OK 134.56     ms|OK 137.66     ms|OK 275.2      ms|
-std::sort            : OK 551.36     ms|OK 79.65      ms|OK 85.41      ms|OK 119.44     ms|
-
-
-N = 10000000 Max = 10000000
-                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : OK 275.92     ms|OK 103.53     ms|OK 103.89     ms|OK 35.51      ms|
-Insertion Sort       : Foarte incet    |OK 11.67      ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 1000.35    ms|OK 217.53     ms|OK 222.08     ms|OK 380.61     ms|
-Quick Sort (middle)  : OK 939.52     ms|OK 192.43     ms|OK 195.84     ms|OK 322.91     ms|
-Merge Sort           : OK 1431.22    ms|OK 527.4      ms|OK 478.02     ms|OK 742.57     ms|
-Merge Sort(optimized): OK 1272.95    ms|OK 388.49     ms|OK 471.09     ms|OK 582.59     ms|
-Radix_16             : OK 330.04     ms|OK 329.74     ms|OK 335.84     ms|OK 516.07     ms|
-Radix_256            : OK 278.85     ms|OK 282.76     ms|OK 278.89     ms|OK 356.33     ms|
-Radix_2048           : OK 464.81     ms|OK 444.17     ms|OK 447.08     ms|OK 355.35     ms|
-Introsort            : OK 835.41     ms|OK 102.9      ms|OK 106.86     ms|OK 274.96     ms|
-std::sort            : OK 965.81     ms|OK 156.11     ms|OK 211.63     ms|OK 119.1      ms|
+Counting Sort        : Memorie insuf.  |OK 1.14       ms|Memorie insuf.  |Memorie insuf.  |
+Insertion Sort       : Foarte incet    |OK 1.12       ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 71.39      ms|OK 7.78       ms|OK 71.65      ms|OK 24.18      ms|
+Merge Sort           : OK 124.98     ms|OK 40.92      ms|OK 89.02      ms|OK 67.02      ms|
+Merge Sort(optimized): OK 109.45     ms|OK 31.18      ms|OK 73.36      ms|OK 51.89      ms|
+Quick Sort (median 3): OK 85.66      ms|OK 15.22      ms|OK 86.09      ms|OK 33.28      ms|
+Quick Sort (middle)  : OK 85.35      ms|OK 12.21      ms|OK 83.82      ms|OK 30.69      ms|
+Radix_16             : OK 40.73      ms|OK 40.73      ms|OK 40.81      ms|OK 63.2       ms|
+Radix_2048           : OK 51.46      ms|OK 48.84      ms|OK 49.79      ms|OK 31.47      ms|
+Radix_256            : OK 33.29      ms|OK 31.37      ms|OK 34.2       ms|OK 37.54      ms|
+std::sort            : OK 81.63      ms|OK 11.68      ms|OK 81.42      ms|OK 11.22      ms|
 
 
 N = 10000000 Max = 1000000000000
                        Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
-Counting Sort        : Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |Memorie insuf.  |
-Insertion Sort       : Foarte incet    |OK 12.11      ms|Foarte incet    |Foarte incet    |
-Quick Sort (median 3): OK 989.83     ms|OK 153.02     ms|OK 991.91     ms|OK 373.33     ms|
-Quick Sort (middle)  : OK 956.52     ms|OK 131.87     ms|OK 941.31     ms|OK 316.98     ms|
-Merge Sort           : OK 1428.76    ms|OK 483.8      ms|OK 954.86     ms|OK 741.95     ms|
-Merge Sort(optimized): OK 1276.54    ms|OK 387.21     ms|OK 786.06     ms|OK 582.66     ms|
-Radix_16             : OK 450.28     ms|OK 448.67     ms|OK 444.6      ms|OK 666.84     ms|
-Radix_256            : OK 357.28     ms|OK 357.64     ms|OK 354.94     ms|OK 545.36     ms|
-Radix_2048           : OK 554.73     ms|OK 553.08     ms|OK 551.46     ms|OK 467.55     ms|
-Introsort            : OK 830.7      ms|OK 92.99      ms|OK 832.82     ms|OK 270.63     ms|
-std::sort            : OK 988.16     ms|OK 150.62     ms|OK 965.99     ms|OK 117.1      ms|
+Counting Sort        : Memorie insuf.  |OK 11.29      ms|Memorie insuf.  |Memorie insuf.  |
+Insertion Sort       : Foarte incet    |OK 11.81      ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 842.9      ms|OK 97.42      ms|OK 838.1      ms|OK 270.2      ms|
+Merge Sort           : OK 1468.92    ms|OK 498.83     ms|OK 976.55     ms|OK 757.93     ms|
+Merge Sort(optimized): OK 1301.8     ms|OK 389.61     ms|OK 808.25     ms|OK 591.2      ms|
+Quick Sort (median 3): OK 987.5      ms|OK 158.85     ms|OK 979.89     ms|OK 360.77     ms|
+Quick Sort (middle)  : OK 968.34     ms|OK 140.88     ms|OK 938.57     ms|OK 325.13     ms|
+Radix_16             : OK 441.16     ms|OK 441.64     ms|OK 461.18     ms|OK 656.14     ms|
+Radix_2048           : OK 569.19     ms|OK 566.42     ms|OK 537.04     ms|OK 453.89     ms|
+Radix_256            : OK 338.38     ms|OK 340.17     ms|OK 343.33     ms|OK 551.04     ms|
+std::sort            : OK 959.68     ms|OK 145.43     ms|OK 964.76     ms|OK 117        ms|
+
+
+N = 100000000 Max = 1000000000000
+                       Mixed           |Sorted          |Sorted (reverse)|Duplicate values|
+Counting Sort        : Memorie insuf.  |OK 116.82     ms|Memorie insuf.  |Memorie insuf.  |
+Insertion Sort       : Foarte incet    |OK 119.48     ms|Foarte incet    |Foarte incet    |
+Introsort            : OK 9596.51    ms|OK 1144.46    ms|OK 9638.46    ms|OK 2949.81    ms|
+Merge Sort           : OK 16886.3    ms|OK 5843.18    ms|OK 10589.7    ms|OK 8388.59    ms|
+Merge Sort(optimized): OK 15124.4    ms|OK 4735.87    ms|OK 8907.88    ms|OK 6662.18    ms|
+Quick Sort (median 3): OK 11039.3    ms|OK 1830.65    ms|OK 11076.7    ms|OK 3850.09    ms|
+Quick Sort (middle)  : OK 10829.1    ms|OK 1545.01    ms|OK 10584.1    ms|OK 3526.86    ms|
+Radix_16             : OK 4487.34    ms|OK 4508.23    ms|OK 4497.78    ms|OK 6207.61    ms|
+Radix_2048           : OK 6089.6     ms|OK 6166.26    ms|OK 6206.32    ms|OK 4689.29    ms|
+Radix_256            : OK 3474.47    ms|OK 3456.64    ms|OK 3516.5     ms|OK 5909.99    ms|
+std::sort            : OK 11166.9    ms|OK 1698.79    ms|OK 11118.8    ms|OK 1157.45    ms|

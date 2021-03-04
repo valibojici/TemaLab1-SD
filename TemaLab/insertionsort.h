@@ -1,5 +1,5 @@
 #pragma once
 #include <vector>
 
-
-void insertion_sort(std::vector<unsigned long long>&,size_t,size_t );
+typedef unsigned long long ULL;
+void insertion_sort(std::vector<ULL>&,size_t,size_t );

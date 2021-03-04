@@ -1,5 +1,4 @@
 #include "countingsort.h"
-#include <iostream>
 
 typedef unsigned long long ULL;
 
@@ -22,16 +21,16 @@ void counting_sort(std::vector<ULL>& nums,size_t start, size_t end)
 		mini = std::min(mini, nums[i]), maxi = std::max(maxi, nums[i]);
 
 	// daca sunt prea multe numere depasesc memoria
-	if (maxi - mini + 1 > 1500000000) {
+	if (maxi - mini + 1 > 1000000000) {
 		return;
 	}
 
-	std::vector<int> count(maxi - mini + 1, 0);
-	for (int i = start; i <= end; ++i)
+	std::vector<ULL> count(maxi - mini + 1, 0);
+	for (size_t i = start; i <= end; ++i)
 		count[nums[i] - mini]++;
 
-	int poz = start;
-	for (int i = 0; i < maxi - mini + 1; ++i)
-		for (int j = 0; j < count[i]; ++j)
+	size_t poz = start;
+	for (ULL i = 0; i < maxi - mini + 1; ++i)
+		for (size_t j = 0; j < count[i]; ++j)
 			nums[poz++] = i + mini;
 }
