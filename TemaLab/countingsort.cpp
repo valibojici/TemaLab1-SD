@@ -14,7 +14,7 @@ bool check_memory(const std::vector<ULL>& nums)
 }
 
 
-void counting_sort(std::vector<ULL>& nums,size_t start, size_t end)
+void counting_sort(std::vector<ULL>& nums,unsigned start, unsigned end)
 {
 	ULL mini = nums[start], maxi = nums[start];
 	for (int i = start + 1; i <= end; ++i)
@@ -26,11 +26,11 @@ void counting_sort(std::vector<ULL>& nums,size_t start, size_t end)
 	}
 
 	std::vector<ULL> count(maxi - mini + 1, 0);
-	for (size_t i = start; i <= end; ++i)
+	for (unsigned i = start; i <= end; ++i)
 		count[nums[i] - mini]++;
 
-	size_t poz = start;
+	unsigned poz = start;
 	for (ULL i = 0; i < maxi - mini + 1; ++i)
-		for (size_t j = 0; j < count[i]; ++j)
+		for (unsigned j = 0; j < count[i]; ++j)
 			nums[poz++] = i + mini;
 }

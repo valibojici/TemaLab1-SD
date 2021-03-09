@@ -2,9 +2,9 @@
 #include "insertionsort.h"
 
 
-size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
+unsigned partition_median3(std::vector<ULL>& nums, unsigned start, unsigned end)
 {
-	size_t mid = start + (end - start) / 2;
+	unsigned mid = start + (end - start) / 2;
 	if (nums[start] > nums[mid])
 		std::swap(nums[start], nums[mid]);
 	if (nums[start] > nums[end])
@@ -26,12 +26,12 @@ size_t partition_median3(std::vector<ULL>& nums, size_t start, size_t end)
 	}
 }
 
-size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
+unsigned partition_middle(std::vector<ULL>& nums, unsigned start, unsigned end)
 {
-	size_t mid = start + (end - start) / 2;
+	unsigned mid = start + (end - start) / 2;
 	 
 	ULL pivot = nums[mid];
-	size_t lo = start, hi = end;
+	unsigned lo = start, hi = end;
 
 
 	while (1) {
@@ -46,10 +46,10 @@ size_t partition_middle(std::vector<ULL>& nums, size_t start, size_t end)
 	}
 }
 
-void quick_sort_median3(std::vector<ULL>&nums, size_t start, size_t end)
+void quick_sort_median3(std::vector<ULL>&nums, unsigned start, unsigned end)
 { 
 	if(start < end){
-		size_t p = partition_median3(nums, start, end);
+		unsigned p = partition_median3(nums, start, end);
 
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if (p - start + 1 < end - p)
@@ -65,10 +65,10 @@ void quick_sort_median3(std::vector<ULL>&nums, size_t start, size_t end)
 	}
 }
 
-void quick_sort_middle(std::vector<ULL>& nums, size_t start, size_t end)
+void quick_sort_middle(std::vector<ULL>& nums, unsigned start, unsigned end)
 {
 	if (start < end) {
-		size_t p = partition_middle(nums, start, end);
+		unsigned p = partition_middle(nums, start, end);
 
 		// apel recursiv la jumatatea mai mica si dupa tail call altfel stack overflow?
 		if(p - start + 1 < end - p)

@@ -5,9 +5,9 @@
 
 typedef unsigned long long ULL;
 
-void heap_sort(std::vector<ULL>&, size_t, size_t);
-void heap_down(std::vector<ULL>&, size_t,size_t, size_t);
+void heap_sort(std::vector<ULL>&, unsigned, unsigned);
+void heap_down(std::vector<ULL>&, unsigned,unsigned, unsigned);
 
 
-void introsort_range(std::vector<ULL>&, size_t, size_t, int);
-void introsort(std::vector<ULL>&, size_t, size_t);
+void introsort_range(std::vector<ULL>&, unsigned, unsigned, int);
+void introsort(std::vector<ULL>&, unsigned, unsigned);

@@ -20,17 +20,17 @@ typedef unsigned long long ULL;
 
 
 struct Result {
-	size_t size;
+	unsigned size;
 	ULL max_val;
 	std::map < std::string, std::vector< std::pair<std::string, float> > >  subcase_info; // sort_name : vector<subcase_name, time>
-	Result(size_t size, ULL max_val) : size(size), max_val(max_val) {}
+	Result(unsigned size, ULL max_val) : size(size), max_val(max_val) {}
 };
 
-std::vector<std::pair<size_t, ULL> > get_tests(const char* file_name); 
+std::vector<std::pair<unsigned, ULL> > get_tests(const char* file_name); 
 
-std::vector<ULL> get_random_nums(size_t size, ULL max_val, std::string option);	
+std::vector<ULL> get_random_nums(unsigned size, ULL max_val, std::string option);	
 
-void std_sort(std::vector<ULL>& nums, size_t start, size_t end); // functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
+void std_sort(std::vector<ULL>& nums, unsigned start, unsigned end); // functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi
 
 bool check_sort(const std::vector<ULL>& nums);
 
@@ -41,7 +41,7 @@ int main() {
 
 
 	// functii in vector https://en.cppreference.com/w/cpp/utility/functional/function
-	std::vector<std::function<void(std::vector<ULL>&, size_t, size_t) > > sorts = {
+	std::vector<std::function<void(std::vector<ULL>&, unsigned, unsigned) > > sorts = {
 			counting_sort,
 			insertion_sort,
 			quick_sort_median3,
@@ -78,7 +78,7 @@ int main() {
 		for (auto& subcase : subcases)
 		{
 			std::vector<ULL> initial_nums = get_random_nums(test.first, test.second, subcase);
-			for (size_t i = 0; i < sorts.size(); ++i)
+			for (unsigned i = 0; i < sorts.size(); ++i)
 			{		
 				std::cout << "Se calculeaza timpul pentru " << sort_names[i] << " cazul " << subcase << " " << test.first << " " << test.second << '\n';
 				// daca dureaza prea mult sau nu este memorie suficienta(Counting sort)
@@ -124,24 +124,24 @@ int main() {
 	return 0;
 }
 
-std::vector<std::pair<size_t, ULL> > get_tests(const char* file_name)
+std::vector<std::pair<unsigned, ULL> > get_tests(const char* file_name)
 {
 	std::string input;
 	std::ifstream fin(file_name);
-	std::vector< std::pair<size_t, ULL> >tests;
+	std::vector< std::pair<unsigned, ULL> >tests;
 
 	fin >> input;
 	fin >> input;
 	fin >> input;
-	size_t nr_tests = std::stoull(input);
+	unsigned nr_tests = std::stoul(input);
 	fin.get();
 
-	for (size_t i = 0; i < nr_tests; ++i)
+	for (unsigned i = 0; i < nr_tests; ++i)
 	{
 		fin >> input;
 		fin >> input;
 		fin >> input;
-		size_t size = std::stoull(input);
+		unsigned size = std::stoul(input);
 		fin.get();
 
 		fin >> input;
@@ -156,7 +156,7 @@ std::vector<std::pair<size_t, ULL> > get_tests(const char* file_name)
 	return tests;
 }
 
-std::vector<ULL> get_random_nums(size_t size, ULL max_val, std::string option)
+std::vector<ULL> get_random_nums(unsigned size, ULL max_val, std::string option)
 {
 	// generarea numere aleatorii https://stackoverflow.com/a/13445752
 	std::random_device dev;
@@ -167,18 +167,18 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val, std::string option)
 	nums.reserve(size);
 	if (option == "Duplicate values")
 	{
-		for (size_t i = 0; i < 8; ++i)
+		for (unsigned i = 0; i < 8; ++i)
 			nums.push_back(distribution(rng));
 
 		std::uniform_int_distribution<ULL> dist(0, 7);
-		for (size_t i = 8; i < size; ++i)
+		for (unsigned i = 8; i < size; ++i)
 		{
 			ULL aux = nums[dist(rng)];
 			nums.push_back(aux);
 		}
 	}
 	else {
-		for (size_t i = 0; i < size; ++i)
+		for (unsigned i = 0; i < size; ++i)
 			nums.push_back(distribution(rng));
 	}
 
@@ -191,14 +191,14 @@ std::vector<ULL> get_random_nums(size_t size, ULL max_val, std::string option)
 	return nums;
 }
 
-void std_sort(std::vector<ULL>& nums, size_t start, size_t end)
+void std_sort(std::vector<ULL>& nums, unsigned start, unsigned end)
 {
 	std::sort(nums.begin(), nums.end());
 }
 
 bool check_sort(const std::vector<ULL>& nums)
 {
-	for (size_t i = 1; i < nums.size(); ++i)
+	for (unsigned i = 1; i < nums.size(); ++i)
 		if (nums[i - 1] > nums[i])return false;
 	return true;
 }
