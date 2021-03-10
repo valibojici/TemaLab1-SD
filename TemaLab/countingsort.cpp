@@ -1,6 +1,6 @@
 #include "countingsort.h"
 
-typedef unsigned long long ULL;
+
 
 bool check_memory(const std::vector<ULL>& nums)
 {

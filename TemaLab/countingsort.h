@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
 
-bool check_memory(const std::vector<unsigned long long>&);
-void counting_sort(std::vector<unsigned long long>&,unsigned,unsigned);
+typedef unsigned long long ULL;
+
+bool check_memory(const std::vector<ULL>&);
+void counting_sort(std::vector<ULL>&,unsigned,unsigned);
