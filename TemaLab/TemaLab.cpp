@@ -8,6 +8,7 @@
 #include <functional>
 #include <iomanip>
 #include <map>
+#include <algorithm>
 
 #include "countingsort.h"
 #include "insertionsort.h"
@@ -27,7 +28,7 @@ struct Result {
 };
 
 std::vector<std::pair<unsigned, ULL> > get_tests(const char* file_name); 
-
+ 
 std::vector<ULL> get_random_nums(unsigned size, ULL max_val, std::string option);	
 
 void std_sort(std::vector<ULL>& nums, unsigned start, unsigned end); // functie pentru std::sort ca sa aiba aceeasi sintaxa ca ceilalti algoritmi

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cmath>
 #include "quicksort.h"
 
 typedef unsigned long long ULL;

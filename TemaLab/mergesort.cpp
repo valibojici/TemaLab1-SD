@@ -1,4 +1,4 @@
-#include "mergesort.h";
+#include "mergesort.h"
 
 void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, unsigned start, unsigned end, bool optimize = false)
 {
@@ -6,7 +6,7 @@ void mergesort(std::vector<ULL>& nums, std::vector<ULL>&aux, unsigned start, uns
 	{
 		if (optimize && end - start + 1 <= 24)
 		{
-			// insertion sort
+			// insertion sort 
 			for (unsigned i = start + 1; i <= end; ++i)
 			{
 				ULL x = nums[i];
