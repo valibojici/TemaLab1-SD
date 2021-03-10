@@ -145,7 +145,7 @@
     <ClCompile Include="mergesort.cpp" />
     <ClCompile Include="quicksort.cpp" />
     <ClCompile Include="radixsort.cpp" />
-    <ClCompile Include="TemaLab.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt" />
